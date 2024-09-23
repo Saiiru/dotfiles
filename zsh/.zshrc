@@ -5,15 +5,19 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Disable instant prompt to prevent consolve output warning
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s`
+  ssh-add ~/.ssh/github_com_ed25519
+fi
+
 if [[ -f "/opt/homebrew/bin/brew" ]] then
   # If you're using macOS, you'll want this enabled
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-if [[ ! -d "./.fnm" ]] then
-  curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "./.fnm" --skip-shell
-  echo "fnm installed"
-fi
 
 # fnm
 export PATH=/home/$USER/.fnm:$PATH
