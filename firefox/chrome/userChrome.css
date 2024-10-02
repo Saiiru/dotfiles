@@ -1,47 +1,46 @@
-/** Hide Tab bars **/
-#main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar > .toolbar-items {
-  opacity: 0;
-  pointer-events: none;
+/* ArcWTF main files */
+@import url("icons/icons.css");
+@import url("toolbar/tabbar.css");
+@import url("toolbar/navbar.css");
+@import url("toolbar/personalbar.css");
+@import url("toolbar/findbar.css");
+@import url("toolbar/urlbar.css");
+@import url("global/colors.css");
+@import url("global/popup.css");
+@import url("global/browser.css");
+@import url("global/tree.css");
+
+/* Tweaks */
+@import url("global/tweaks.css");
+@import url("tweaks/hide-tabs-bar.css");
+@import url("tweaks/extensions.css");
+@import url("tweaks/sidebar.css");
+@import url("tweaks/popup-search.css");
+
+/* Enable translucency on browser toolbars. (MacOS only) */
+@import url("tweaks/mac-translucent.css")
+(-moz-bool-pref: "uc.tweak.mac-translucent");
+
+/* Import custom stylesheet instead of modifying the theme files. */
+@import url("custom.css");
+
+/* Replacing Userchrome Toggle icon with Arc sidebar icon */
+:is(
+    .webextension-browser-action,
+    .eom-addon-button
+  )[data-extensionid="userchrome-toggle@joolee.nl"]
+  .toolbarbutton-icon {
+  list-style-image: url(./icons/userchrome-toggle.svg);
 }
-#main-window:not([tabsintitlebar="true"]) #TabsToolbar {
-    visibility: collapse !important;
+:is(
+    .webextension-browser-action,
+    .eom-addon-button
+  )[data-extensionid="copy-frame-url@jeffersonscher.com"]
+  .toolbarbutton-icon {
+  list-style-image: url(./icons/link.svg);
 }
 
-
-/* Sidebar min and max width removal */
-#sidebar-box {
-    max-width: none !important;
-    min-width: 0px !important;
-}
-/* Hide splitter, when using Tree Style Tab. */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
-    display: none !important;
-}
-/* Hide sidebar header, when using Tree Style Tab. */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
-    visibility: collapse;
-}
-
-/* Shrink sidebar until hovered, when using Tree Style Tab. */
-:root {
-    --thin-tab-width: 40px;
-    --wide-tab-width: 300px;
-}
-#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
-    min-width: var(--wide-tab-width) !important;
-    max-width: none !important;
-}
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
-    position: relative !important;
-    transition: all 100ms !important;
-    min-width: var(--thin-tab-width) !important;
-    max-width: var(--thin-tab-width) !important;
-}
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
-    transition: all 200ms !important;
-    transition-delay: 0.2s !important;
-    min-width: var(--wide-tab-width) !important;
-    max-width: var(--wide-tab-width) !important;
-    margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
-    z-index: 1;
+/* Using Segoe UI Variable font (uncomment below to apply) */
+* {
+  font-family: "Segoe UI Variable Display" !important;
 }

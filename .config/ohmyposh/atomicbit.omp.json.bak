@@ -1,0 +1,70 @@
+{
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "text",
+          "style": "powerline",
+          "foreground": "#00ffff",
+          "background": "#000000",
+          "properties": {
+            "text": "kali-TH",
+            "prefix": " ",
+            "postfix": " ",
+            "font": "mono12"
+          }
+        },
+        {
+          "type": "session",
+          "style": "plain",
+          "foreground": "#ff0000",
+          "background": "#000000",
+          "properties": {
+            "display_user": true,
+            "display_host": false,
+            "prefix": " [",
+            "postfix": "]"
+          }
+        },
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "#00ff00",
+          "background": "#000000",
+          "properties": {
+            "folder_icon": "",
+            "prefix": " ",
+            "postfix": " "
+          }
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "#ffff00",
+          "background": "#000000",
+          "properties": {
+            "display_status": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "exit",
+          "style": "plain",
+          "foreground": "#ffffff",
+          "background": "#ff0000",
+          "properties": {
+            "always_enabled": true
+          }
+        }
+      ]
+    }
+  ],
+  "final_space": true
+}
