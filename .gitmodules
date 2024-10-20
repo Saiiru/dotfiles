@@ -1,7 +1,7 @@
 [submodule "firefox"]
-	path = firefox
-	url = https://github.com/KiKaraage/ArcWTF.git
+    path = firefox
+    url = https://github.com/KiKaraage/ArcWTF.git
 [submodule ".config/nvim"]
-	path = .config/nvim
-	url = https://github.com/Saiiru/neovim
+    path = .config/nvim
+    url = git@github.com:Saiiru/neovim.git
     branch = main
