@@ -1,0 +1,53 @@
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+
+  [[blocks.segments]]
+    type = 'session'
+    style = 'plain'
+    foreground_templates = ['{{ if .Root }}lightRed{{ end }}']
+    template = '<{{ if .Root }}lightBlue{{ else }}green{{ end }}>┌──(</>{{ .UserName }}{{ if .Root }}💀{{ else }}㉿{{ end }}{{ .HostName }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)</>'
+    foreground = 'lightBlue'
+
+    [blocks.segments.properties]
+      display_host = true
+
+  [[blocks.segments]]
+    type = 'python'
+    style = 'powerline'  # Estilo Powerline
+    background = '#FFDE57'  # Cor de fundo
+    foreground = '#111111'  # Cor de primeiro plano
+    powerline_symbol = '\ue0b0'  # Símbolo Powerline
+    template = ' \ue235 {{ if .Venv }}({{ .Venv }}){{ end }} '  # Formatação do ambiente
+
+    [blocks.segments.properties]
+      display_mode = 'environment'  # Modo de exibição
+      fetch_virtual_env = true  # Busca o ambiente virtual
+      home_enabled = true  # Ativa a exibição do diretório inicial
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    template = '<{{ if .Root }}lightBlue{{ else }}green{{ end }}>-[</>{{ .Path }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>]</>'
+    foreground = 'lightWhite'
+
+    [blocks.segments.properties]
+      folder_separator_icon = '<#c0c0c0>/</>'
+      style = 'full'
+
+  [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
+    template = '<{{ if .Root }}lightBlue{{ else }}green{{ end }}>-[</>{{ .HEAD }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>]</>'
+    foreground = 'white'
+
+  [[blocks]]
+    alignment = 'left'
+    newline = true
+
+    [[blocks.segments]]
+      type = 'text'
+      style = 'plain'
+      template = '<{{ if .Root }}lightBlue{{ else }}green{{ end }}>└─</>{{ if .Root }}<lightRed>#</>{{ else }}${{ end }} '
+      foreground = 'lightBlue'
+
