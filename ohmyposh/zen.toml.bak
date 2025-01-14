@@ -1,0 +1,77 @@
+version = 2
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+
+  [[blocks.segments]]
+    type = 'session'
+    style = 'plain'
+    foreground_templates = ['{{ if .Root }}lightRed{{ end }}']
+    template = '<{{ if .Root }}brightCyan{{ else }}green{{ end }}>┌──(</>{{ .UserName }}{{ if .Root }}💀{{ else }}㉿{{ end }}{{ .HostName }}<{{ if .Root }}brightCyan{{ else }}green{{ end }}>)</>'
+    foreground = 'brightCyan'
+
+    [blocks.segments.properties]
+      display_host = true
+
+  [[blocks.segments]]
+    type = 'python'
+    style = 'plain'
+    template = '<{{ if .Root }}brightCyan{{ else }}green{{ end }}>-[</> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }}{{ end }}{{ .Full }}{{ end }}<{{ if .Root }}brightCyan{{ else }}green{{ end }}>]</>'
+    foreground = 'yellow'
+
+    [blocks.segments.properties]
+      fetch_version = false
+      fetch_virtual_env = true
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    template = '<{{ if .Root }}brightCyan{{ else }}green{{ end }}>-[</>{{ .Path }}<{{ if .Root }}brightCyan{{ else }}green{{ end }}>]</>'
+    foreground = 'lightWhite'
+
+    [blocks.segments.properties]
+      folder_separator_icon = '<#c0c0c0>/</>'
+      style = 'full'
+
+  [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
+    template = '<{{ if .Root }}brightCyan{{ else }}green{{ end }}>-[</>{{ .HEAD }}<{{ if .Root }}brightCyan{{ else }}green{{ end }}>]</>'
+    foreground = 'white'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'right'
+
+  [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
+    template = ' {{ .FormattedMs }} '
+    foreground = 'white'
+
+    [blocks.segments.properties]
+      always_enabled = true
+      style = 'round'
+
+  [[blocks.segments]]
+    type = 'status'
+    style = 'plain'
+    foreground_templates = ['{{ if gt .Code 0 }}red{{ end }}']
+    template = ' {{ if gt .Code 0 }}{{else}}{{ end }} '
+    foreground = 'green'
+
+    [blocks.segments.properties]
+      always_enabled = true
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    template = '<{{ if .Root }}brightCyan{{ else }}green{{ end }}>└─</>{{ if .Root }}<lightRed>#</>{{ else }}${{ end }} '
+    foreground = 'brightCyan'
+
