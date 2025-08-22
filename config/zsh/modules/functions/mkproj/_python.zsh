@@ -10,11 +10,20 @@ _mkproj_python() {
     echo "[tool.poetry]\nname = \"$1\"\nversion = \"0.1.0\"\ndescription = \"\"\nauthors = [\"Your Name <you@example.com>\"]\nreadme = \"README.md\"\n\n[tool.poetry.dependencies]\npython = \"^3.12\"\n\n[build-system]\nrequires = [\"poetry-core\"]\nbuild-backend = \"poetry.core.masonry.api\"\n" > pyproject.toml
 
     _kora_spin "Initializing virtual environment with Poetry..."
+    # Ensure Poetry creates the virtual environment inside the project folder
+    poetry config virtualenvs.in-project true --local > /dev/null 2>&1
     poetry install --no-root > /dev/null 2>&1 # Create virtual environment and install dependencies
 
-    _kora_log "Virtual environment created. Activate with 'poetry shell'."
+    _kora_log "Python project created with Poetry."
+    _kora_log "The virtual environment is located in the '.venv' folder."
+    _kora_log "It will activate automatically when you 'cd' into this project."
+    _kora_log "To manually enter the Poetry shell: 'poetry shell'"
+    _kora_log "To run commands within the venv: 'poetry run <command>'"
+    _kora_log "To add dependencies: 'poetry add <package>'"
+    _kora_log "To remove dependencies: 'poetry remove <package>'"
 
     # Create mise.toml for automatic virtual environment activation.
+    # This mise.toml ensures the .venv is recognized and activated by mise.
     echo "[tools]\npython = \"3.12\" # Specify the Python version you want to use for the venv\n\n[env]\n_.python.venv = { path = \".venv\", create = true }\n" > mise.toml
     _kora_log "mise.toml added for automatic virtual environment activation."
 
