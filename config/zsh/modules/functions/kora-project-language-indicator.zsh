@@ -61,9 +61,7 @@ _kora_get_project_language() {
 
   # --- Arduino ---
   if find . -maxdepth 2 -name "*.ino" -print -quit | grep -q .; then
-    lang_icon="⚙️" # Arduino gear icon
-    # Arduino CLI doesn't easily give version of active sketch
-    # We can just indicate presence
+    lang_icon="⚡" # High voltage sign for Arduino
     lang_version="Arduino"
     echo "${lang_icon} ${lang_version}"
     return 0
@@ -71,7 +69,7 @@ _kora_get_project_language() {
 
   # --- C/C++ ---
   if [[ -f "Makefile" || -f "CMakeLists.txt" || -f "*.c" || -f "*.cpp" ]]; then
-    lang_icon="💻"
+    lang_icon="🅒" # Circled C for C/C++
     if command -v gcc &>/dev/null; then
       lang_version="C/C++"
     fi
