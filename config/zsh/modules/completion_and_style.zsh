@@ -1,7 +1,12 @@
-# completion_and_style.zsh — Centralized configuration for Zsh completions, FZF, and syntax highlighting.
+# lua/kora/modules/completion_and_style.zsh
+# KORA · ZSH Completions & Styling (Grimório Neo-Noir)
+#
+# Configurações centralizadas para o sistema de completação do Zsh,
+# incluindo estilos visuais para completions, FZF, e autosuggestions.
+# Otimizado para performance e clareza visual.
 
-# --- Zsh Completion Styling ---
-autoload -Uz compinit
+# Zsh Completion Styling: Define o comportamento e a aparência das sugestões de completação.
+autoload -Uz compinit # Necessário para compinit, mas compinit é chamado em core.zsh
 zmodload zsh/complist
 
 zstyle ':completion:*' menu select
@@ -10,15 +15,15 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format '%F{141}-- %d --%f'
 zstyle ':completion:*:messages' format '%F{51}-- %d --%f'
 zstyle ':completion:*:warnings' format '%F{196}-- No matches found --%f'
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompcache"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # Consolidado
 zstyle ':completion:*:corrections' format '%F{220}-- %d (errors: %e) --%f'
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*' group-order aliases builtins functions commands
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompcache"
 
-# --- Zsh Syntax Highlighting Styles ---
+# Zsh Syntax Highlighting Styles: Estilos para o destaque de sintaxe.
+# Nota: O plugin de destaque de sintaxe é carregado em plugins.zsh.
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[default]='none'
@@ -64,8 +69,7 @@ ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=#F59E0B,bold'
 ZSH_HIGHLIGHT_STYLES[bracket-level-5]='fg=#22D3EE,bold'
 ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='standout'
 
-# --- FZF and fzf-tab Styling and Widgets ---
-# Configures FZF and fzf-tab behavior and styling, including custom widgets for file and history search.
+# FZF and fzf-tab Styling and Widgets: Configurações visuais e de comportamento para FZF e fzf-tab.
 if command -v fzf >/dev/null 2>&1; then
   zstyle ':fzf-tab:*' fzf-flags --color=fg:#CDD6F4,bg:#0A0E27,hl:#7C3AED,fg+:#0A0E27,bg+:#7C3AED,hl+:#CDD6F4
   zstyle ':fzf-tab:*' fzf-command fzf
@@ -89,14 +93,12 @@ if command -v fzf >/dev/null 2>&1; then
   zle -N _kora_fzf_history
 fi
 
-# --- Zsh Autosuggestions Styling ---
-# Customizes the appearance and behavior of autosuggestions.
+# Zsh Autosuggestions Styling: Personaliza a aparência e o comportamento das sugestões automáticas.
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#7C3AED'
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-# --- Zoxide Initialization ---
-# Initializes Zoxide for smart directory navigation.
+# Zoxide Initialization: Inicializa o Zoxide para navegação inteligente de diretórios.
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 fi
