@@ -1,0 +1,87 @@
+font:
+  family: CascadiaCodePL Nerd Font Mono
+  italic: CascadiaCodePL Nerd Font Mono Italic
+  bold: CascadiaCodePL Nerd Font Mono Bold # Assuming Ghostty supports a 'bold' key
+  size: 12
+
+colors:
+  # Cores Base (Grimório)
+  background: "#0B0A12" # grimorio_bg
+  foreground: "#F8F8F2" # grimorio_text
+  cursor: "#9A6CFF"     # grimorio_neon_purple
+  selection_background: "#9A6CFF" # grimorio_neon_purple
+  selection_foreground: "#0B0A12" # grimorio_bg
+
+  # Cores da Barra de Abas
+  tab_active_bg: "#9A6CFF"    # grimorio_neon_purple
+  tab_active_fg: "#F8F8F2"    # grimorio_text
+  tab_inactive_bg: "#141127"  # grimorio_surface
+  tab_inactive_fg: "#6C7086"  # grimorio_muted
+
+  # Paleta ANSI (Grimório Neo-Noir - Mapeado da paleta Cybersynth)
+  palette:
+    - "#0B0A12" # color0 - grimorio_bg
+    - "#FF2D95" # color1 - neon_pink
+    - "#7CFF00" # color2 - neon_green
+    - "#FFD166" # color3 - neon_yellow
+    - "#00CFFF" # color4 - neon_blue
+    - "#FF6EC7" # color5 - neon_mag
+    - "#00F0FF" # color6 - neon_cyan
+    - "#F8F8F2" # color7 - grimorio_text
+    - "#262533" # color8 - grimorio_dim
+    - "#FF6EC7" # color9 - neon_mag (bright red)
+    - "#7CFF00" # color10 - neon_green (bright green)
+    - "#FFD166" # color11 - neon_yellow (bright yellow)
+    - "#00F0FF" # color12 - neon_cyan (bright blue)
+    - "#FF2D95" # color13 - neon_pink (bright magenta)
+    - "#00CFFF" # color14 - neon_blue (bright cyan)
+    - "#FFFFFF" # color15 - pure white (bright white)
+
+key_bindings:
+  # Navegação e Gerenciamento de Abas/Janelas
+  - mods: Control|Shift
+    key: N
+    action: SpawnTab
+  - mods: Control|Shift
+    key: T
+    action: SpawnTab
+  - mods: Control|Shift
+    key: W
+    action: CloseWindow
+  - mods: Control|Shift
+    key: Q
+    action: CloseTab
+  - mods: Control|Shift
+    key: L
+    action: NextTab
+  - mods: Control|Shift
+    key: H
+    action: PreviousTab
+
+  # Lançadores de Aplicações
+  - mods: Control|Shift
+    key: G
+    action: Launch
+    args: ["lazygit"]
+  - mods: Control|Shift
+    key: F
+    action: Launch
+    args: ["fzf"]
+  - mods: Control|Shift
+    key: S
+    action: Launch
+    args: ["spring-initializr-cli"]
+  - mods: Control|Shift
+    key: D
+    action: Launch
+    args: ["docker-compose", "up"]
+  - mods: Control|Shift
+    key: A
+    action: Launch
+    args: ["arduino-ide"]
+
+  # Integração Sesh: Lançador de sessões Sesh (usando 'L' para Launcher, para evitar conflito com 'S')
+  - mods: Control|Shift
+    key: L
+    action: Launch
+    args: ["/home/sairu/dotfiles/.scripts/kora-sesh-launcher"]
