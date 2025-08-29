@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+# KORA Tmux Sesh Creator
+# Provides an interactive menu to create new sesh sessions based on templates.
+
+# Ensure sesh is available
+if ! command -v sesh &>/dev/null; then
+    echo "Error: 'sesh' command not found. Please install sesh." >&2
+    exit 1
+fi
+
+clear
+
+# --- Header ---
+echo "                      󰣇                      "
+echo "             KORA NEURAL MATRIX              "
+echo "          SESSION CREATION PROTOCOL          "
+echo "▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔"
+echo "" # Empty line for spacing
+
+# --- Templates Section ---
+echo " NEURAL TEMPLATES:"
+echo "   󰿟 [p] Project Session    󰿟 [w] Work Session"
+echo "   󰿟 [d] Development        󰿟 [t] Temporary"
+echo "   󰿟 [c] Coding Session     󰿟 [m] Monitoring"
+echo "   󰿟 [r] Research           󰿟 [x] Experiment"
+echo "" # Empty line for spacing
+
+# --- Contextual Info ---
+echo " 📍 Current Location: $(pwd)"
+echo " 🕒 Neural Time: $(date +"%H:%M:%S")"
+echo " 👤 Operator: Saiiru"
+echo "▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔"
+echo "" # Empty line for spacing
+
+# --- User Input ---
+read -p "󰣇 Neural session identifier: " input
+echo "" # Empty line after input for spacing
+
+if [ -n "$input" ]; then
+  case "$input" in
+    p|project) name="project-$(basename "$(pwd)")" ;;
+    w|work) name="work-$(date +%Y%m%d)" ;;
+    d|dev) name="dev-$(basename "$(pwd)")" ;;
+    t|tmp) name="tmp-$(date +%H%M)" ;;
+    c|coding) name="coding-$(basename "$(pwd)")" ;;
+    m|monitor) name="monitor-$(hostname)" ;;
+    r|research) name="research-$(date +%m%d)" ;;
+    x|experiment) name="exp-$(date +%H%M)" ;;
+    *) name="$input" ;;
+  esac
+
+  echo "󰣇 Initializing neural session: $name"
+  echo "🔄 Establishing neural links..."
+  if command -v sesh &>/dev/null; then
+    sesh connect "$name"
+  else
+    tmux new-session -d -s "$name" -c "$(pwd)" && tmux switch-client -t "$name"
+  fi
+else
+  echo "󰣇 Session creation cancelled."
+fi
+
+echo "" # Empty line before final prompt
+read -p "󰣇 Press [ENTER] to close this window..."

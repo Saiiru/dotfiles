@@ -50,19 +50,6 @@
           "template": "<#7C3AED>-[</> {{ .Full }}<#7C3AED>]</>"
         },
         {
-          "type": "command",
-          "style": "plain",
-          "foreground": "#CDD6F4",
-          "properties": {
-            "command": "_kora_get_project_language",
-            "shell": "zsh",
-            "template": "<#7C3AED>-[</>{{ .Output }}<#7C3AED>]</>",
-            "always_enabled": true,
-            "display_mode": "always"
-          },
-          "template": "<#7C3AED>-[</>{{ .Output }}<#7C3AED>]</>"
-        },
-        {
           "type": "dotnet",
           "style": "plain",
           "foreground": "#512BD4",

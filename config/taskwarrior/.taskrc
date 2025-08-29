@@ -1,0 +1,9 @@
+# KORA Gamification System - UDAs
+uda.xp.type=numeric
+uda.xp.label=XP
+uda.difficulty.type=string
+uda.difficulty.label=Rank
+uda.difficulty.values=E,D,C,B,A,S
+uda.quest_type.type=string
+uda.quest_type.label=Quest Type
+uda.quest_type.values=Daily,Main,Urgent,Study

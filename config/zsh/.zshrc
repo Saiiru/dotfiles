@@ -1,15 +1,21 @@
-#!/usr/bin/env zsh
-# KORA NEURAL INTERFACE - BATMAN HUD (Modular)
+# Modularização KORA
+# Garante que ZDOTDIR esteja definido para XDG compliance.
+export ZDOTDIR="$HOME/.config/zsh"
 
-# Create config directory if it doesn't exist
-[[ -d $HOME/.config/zsh ]] || mkdir -p $HOME/.config/zsh
-
-# Load core modules in proper order
-for file in $HOME/.config/zsh/{theme,env,plugins,prompt,python,node,fzf,completion,aliases,kora,startup}.zsh; do
-  [[ -f "$file" ]] && source "$file"
+# Carrega os módulos na ordem especificada.
+for f in env core plugins; do # Source env, core, and plugins first
+  [ -f "$ZDOTDIR/modules/$f.zsh" ] && source "$ZDOTDIR/modules/$f.zsh"
 done
 
-# Auto-detect Python environment in current directory
-auto_activate_venv
+# Source all files in the functions directory
+if [[ -d "$ZDOTDIR/modules/functions" ]]; then
+  for f in "$ZDOTDIR/modules/functions"/*.zsh(N); do
+    source "$f"
+  done
+fi
 
-PATH=~/.console-ninja/.bin:$PATH
+# Continue sourcing the rest of the modules
+for f in aliases keybinds completion_and_style spellbook prompt; do
+  [ -f "$ZDOTDIR/modules/$f.zsh" ] && source "$ZDOTDIR/modules/$f.zsh"
+done
+alias arcane="~/.local/bin/arcane-tui.sh"

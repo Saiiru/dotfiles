@@ -1,45 +1,48 @@
-### Lua ###
-# Compiled Lua sources
-luac.out
-
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
-
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-obsidian
-config/task
-# End of https://www.toptal.com/developers/gitignore/api/lua
+/BetterDiscord
+/BetterDiscord Installer
+/Code
+/GitHub Desktop
+/JetBrains
+/Microsoft
+/Microsoft Teams - Preview
+/Pinta
+/QtProject.conf
+/Thunar
+/YouTube Music
+/azote
+/bleachbit
+/celluloid
+/dconf
+/deluge
+/discord
+/eog
+/falkon
+/flutter
+/garuda
+/gedit
+/google-chrome
+/htop
+/libreoffice
+/light
+/menus
+/micro
+/mimeapps.list
+/modem-manager-gui
+/mpv
+/ncmpcpp
+/nordvpn
+/obs-studio
+/pamac
+/pavucontrol.ini
+/psd
+/pulse
+/qt5ct
+/ranger
+/smplayer
+/stacer
+/starship.toml
+/user-dirs.dirs
+/user-dirs.locale
+/vlc
+/xfce4
+/xsettingsd

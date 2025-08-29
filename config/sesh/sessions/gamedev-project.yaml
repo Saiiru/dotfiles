@@ -1,0 +1,13 @@
+# ~/.config/sesh/sessions/gamedev-project.yaml
+# Sessão para desenvolvimento de jogos em C.
+name: gamedev-project
+root: ~/workspace/projects/gamedev-c/my-c-game
+windows:
+  - name: code
+    panes:
+      - nvim .
+  - name: build & run
+    layout: tiled
+    panes:
+      - make && ./build/game --level 1 # Compila e executa o jogo
+      - watch -n 1 make # Monitora mudanças para recompilar

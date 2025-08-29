@@ -1,0 +1,86 @@
+version = 3
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+
+  # USER@HOST (SSH/ROOT-aware, ícone entre user e host)
+  [[blocks.segments]]
+    type = 'session'
+    style = 'plain'
+    foreground = 'brightCyan'
+    foreground_templates = ['{{ if .Root }}lightRed{{ end }}']
+    template = '<{{ if .Root }}brightCyan{{ else }}green{{ end }}>┌──(</>{{ .UserName }}{{ if .Root }}💀{{ else }}㉿{{ end }}{{ .HostName }}<{{ if .Root }}brightCyan{{ else }}green{{ end }}>)</>'
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      display_host = true
+
+  # PYTHON (conda / venv / pyenv / version fallback)
+  [[blocks.segments]]
+    type = 'python'
+    style = 'plain'
+    foreground = 'yellow'
+    template = '<{{ if .Root }}brightCyan{{ else }}green{{ end }}>-[</>{{ if .CondaEnv }} (conda) {{ .CondaEnv }}{{ else if .Venv }} (venv) {{ .Venv }}{{ else if .Pyenv }} (pyenv) {{ .Pyenv }}{{ else if .Version }} {{ .Version }}{{ end }}<{{ if .Root }}brightCyan{{ else }}green{{ end }}>]</>'
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      fetch_version = true
+      fetch_virtual_env = true
+      fetch_conda_env = true
+      fetch_pyenv = true
+
+  # PATH
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    foreground = 'lightWhite'
+    template = '<{{ if .Root }}brightCyan{{ else }}green{{ end }}>-[</> {{ .Path }}<{{ if .Root }}brightCyan{{ else }}green{{ end }}>]</>'
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      folder_separator_icon = '<#c0c0c0>/</>'
+      style = 'full'
+
+  # GIT (branch + status indicators)
+  [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
+    foreground = 'white'
+    template = '<{{ if .Root }}brightCyan{{ else }}green{{ end }}>-[</> {{ if .Branch }}{{ .Branch }}{{ else }}(detached){{ end }}{{ if .Working.Changed }} {{ end }}{{ if .Staging.Changed }} !{{ end }}{{ if .Worktree.Untracked }} ?{{ end }}{{ if .Ahead }} {{ .Ahead }}{{ end }}{{ if .Behind }} {{ .Behind }}{{ end }}<{{ if .Root }}brightCyan{{ else }}green{{ end }}>]</>'
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'right'
+
+  [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
+    foreground = 'white'
+    template = ' {{ .FormattedMs }} '
+    [blocks.segments.properties]
+      always_enabled = true
+      cache_duration = 'none'
+      style = 'round'
+
+  [[blocks.segments]]
+    type = 'status'
+    style = 'plain'
+    foreground = 'green'
+    foreground_templates = ['{{ if gt .Code 0 }}red{{ end }}']
+    template = ' {{ if gt .Code 0 }}{{else}}{{ end }} '
+    [blocks.segments.properties]
+      always_enabled = true
+      cache_duration = 'none'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    foreground = 'brightCyan'
+    template = '<{{ if .Root }}brightCyan{{ else }}green{{ end }}>└─</>{{ if .Root }}<lightRed>#</>{{ else }}${{ end }} '
+    [blocks.segments.properties]
+      cache_duration = 'none'

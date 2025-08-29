@@ -1,0 +1,288 @@
+{
+  "main": {
+    "id": "f98dcc7cdd154f87",
+    "type": "split",
+    "children": [
+      {
+        "id": "b6bfd2237bc85ac7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4a224229f82df40c",
+            "type": "leaf",
+            "state": {
+              "type": "home-tab-view",
+              "state": {},
+              "icon": "search",
+              "title": "Home tab"
+            }
+          },
+          {
+            "id": "8066d5c491666043",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Home.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Home"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a1ec74a17261ac63",
+    "type": "split",
+    "children": [
+      {
+        "id": "97b69f4d73345c3a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5f05c6ca784194e2",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "e67da4cece2a1448",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "06cd082c784ef2e6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          },
+          {
+            "id": "db743f43d7a78891",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {},
+              "icon": "clock",
+              "title": "Recent Files"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "b8591cc8c4fe0afc",
+    "type": "split",
+    "children": [
+      {
+        "id": "cbcbbc0b102ff81c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "08dc0082cd7c9454",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "00 - Maps of Content/dashboard.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for dashboard"
+            }
+          },
+          {
+            "id": "02c513bfe2525e54",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "00 - Maps of Content/dashboard.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from dashboard"
+            }
+          },
+          {
+            "id": "5baa6eca7aed5221",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "6032b977b6e01698",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "80d6f8ddfa81424e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "00 - Maps of Content/dashboard.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of dashboard"
+            }
+          },
+          {
+            "id": "fa9385cf6fb35057",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          },
+          {
+            "id": "99199714bd63ecec",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "Hyprland config Docs.md"
+              },
+              "icon": "lucide-info",
+              "title": "File properties for Hyprland config Docs"
+            }
+          }
+        ],
+        "currentTab": 6
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "homepage:Open homepage": false,
+      "switcher:Open quick switcher": true,
+      "command-palette:Open command palette": true,
+      "graph:Open graph view": false,
+      "daily-notes:Open today's daily note": false,
+      "zk-prefixer:Create new unique note": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
+      "canvas:Create new canvas": false,
+      "templates:Insert template": true,
+      "obsidian-spaced-repetition:Review flashcards": false,
+      "obsidian-importer:Open Importer": true,
+      "templater-obsidian:Templater": true,
+      "obsidian-advanced-slides:Show Slide Preview": false,
+      "pexels-banner:🚩 Pixel Banner Menu": false,
+      "obsidian-book-search-plugin:Create new book note": false,
+      "dbfolder:Create a new database table": false
+    }
+  },
+  "active": "5f05c6ca784194e2",
+  "lastOpenFiles": [
+    "Backup",
+    "Home.md",
+    "00 - Maps of Content/00 - Dashboard.md",
+    "00 - Maps of Content/00 - Home.md",
+    "Backup/01 - Projects/2025-08-10 KORA DAEDALUS System.md",
+    "Backup/01 - Projects/KORA DAEDALUS.md",
+    "Backup/99 - Meta/00 - Templates/(TEMPLATE) quest.md",
+    "00 - Maps of Content/Tasks Calendar.md",
+    "00 - Maps of Content/Dashboard.md",
+    "00 - Maps of Content/Action Dashboard.md",
+    "00 - Maps of Content/Monthly Calendar.md",
+    "00 - Maps of Content/Just an example for Tasks.md",
+    "00 - Maps of Content/00 - KORADASH.md",
+    "00 - Maps of Content/Completed Books.md",
+    "00 - Maps of Content/Life Progress Bar.md",
+    "00 - Maps of Content/Upcoming Meetings.md",
+    "00 - Maps of Content/Task Dashboard.md",
+    "00 - Maps of Content/Home.md",
+    "00 - Maps of Content/Launchpad.md",
+    "00 - Maps of Content/Reading List.md",
+    "00 - Maps of Content/Week Calendar.md",
+    "00 - Maps of Content/Today's Tasks.md",
+    "00 - Maps of Content/Recent Meetings.md",
+    "00 - Maps of Content/Recently Created Notes.md",
+    "00 - Maps of Content/Readme.md",
+    "00 - Maps of Content/Reading List 1.md",
+    "Backup/99 - Meta/Timeline/view.js",
+    "Backup/99 - Meta/Timeline/view.css",
+    "Backup/99 - Meta/Timeline",
+    "Backup/99 - Meta/Calendar/view.js",
+    "Backup/99 - Meta/Calendar/view.css",
+    "Backup/99 - Meta/Calendar",
+    "Backup/08 - Review/Goals",
+    "Backup/08 - Review",
+    "Backup/99 - Meta/02 - images/Images/banner.png",
+    "estrutura_atual.txt",
+    "Backup/99 - Meta/03 - scripts/(SCRIPT) Daily XP Update.py",
+    "Backup/99 - Meta/02 - images/Images/Pasted image 20250811175615.png",
+    "Backup/99 - Meta/02 - images/Images/Pasted image 20250811175613.png",
+    "Backup/99 - Meta/02 - images/Images/Pasted image 20250811175605.png",
+    "Backup/99 - Meta/02 - images/Images/Pasted image 20250806235117.png",
+    "07 - Archives/Images/Pasted image 20250811175615.png",
+    "07 - Archives/Images/Pasted image 20250811175613.png",
+    "07 - Archives/Images/Pasted image 20250811175605.png",
+    "07 - Archives/Images/Pasted image 20250806235117.png",
+    "Backup/99 - Meta/attachments/Pasted image 20250806234915.png"
+  ]
+}

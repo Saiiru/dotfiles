@@ -17,7 +17,7 @@ export ZDOTDIR="${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}"
 # Adds user's local binaries to PATH.
 # Mise handles paths for development tools (Node.js, Python, etc.).
 export PATH="$HOME/.local/bin:$PATH"
-
+export OPENAI_API_KEY="$(pass show openai/api_key)"
 # --- Zsh History File ---
 export HISTFILE="$HOME/.local/share/zsh/history"
 
