@@ -1,134 +1,88 @@
-# `mkproj` - KORA Universal Project Creator
+# Utilitário `mkproj` - Criação de Projetos
 
-`mkproj` is an interactive, TUI-based Zsh script designed to streamline the process of scaffolding new development projects. It automates the creation of basic project structures, initializes version control, and sets up editor-specific configurations, allowing you to jump straight into coding.
+## Visão Geral
 
-## Usage
+`mkproj` é uma função de shell que automatiza a criação de novos diretórios de projeto a partir de modelos pré-definidos, conhecidos como "arquétipos". Ele agiliza o processo de iniciar um novo projeto, criando uma estrutura de diretórios e arquivos comuns para um tipo de projeto específico.
 
-To use `mkproj`, simply run the command in your terminal:
+## Uso
 
-```bash
-mkproj
+A sintaxe do comando é:
+
+```sh
+mkproj <nome_do_projeto> [arquétipo]
 ```
 
-Follow the on-screen prompts to:
+-   `<nome_do_projeto>`: O nome do diretório do projeto a ser criado.
+-   `[arquétipo]`: (Opcional) O nome do modelo a ser usado. Se omitido, o arquétipo `default` será usado.
 
-1.  **Select Project Archetype:** Choose from a list of supported project types (e.g., Web, Python, Go, Rust, Arduino, C, Java, GameDev C, Spring Boot, DevOps, Fullstack, Default).
-2.  **Enter Project Name:** Provide a name for your new project.
+### Exemplos
 
-The script will then:
+```sh
+# Criar um novo site usando o arquétipo 'web'
+mkproj meu-novo-site web
 
--   Create the project directory.
--   Generate the basic file and folder structure for the chosen archetype.
--   Initialize a Git repository.
--   Perform language-specific setup (e.g., `go mod init`, `npm init`, `cargo new`, `poetry install`, `gradle init`).
--   Optionally add a basic `Dockerfile` for containerization.
--   **Integrate with Neovim:** Create a project-local `.nvim/ftplugin/` directory with filetype-specific Vim scripts (`.vim` files) that define useful keybindings for building and running your project directly from Neovim.
--   Initiate a `tmux` session (using `sesh`) and open the project in Neovim.
+# Criar uma nova ferramenta de linha de comando em Python
+mkproj minha-cli-python python
 
-## Supported Project Types and Generated Files
+# Criar um projeto genérico usando o arquétipo 'default'
+mkproj meu-projeto-aleatorio
+```
 
-Below is a detailed overview of the project types `mkproj` supports and the typical files it generates. Each project type includes basic setup for building/running and Neovim integration.
+## Como Funciona
 
-### 1. Web (HTML, CSS, JS)
+1.  O comando `mkproj` (definido em `modules/functions/mkproj.zsh`) é invocado com um nome de projeto e um arquétipo opcional.
+2.  Ele cria um diretório com o nome do projeto e entra nele.
+3.  Em seguida, ele procura por um arquivo chamado `_<arquétipo>.zsh` dentro deste diretório (`modules/functions/mkproj/`).
+4.  Se um arquivo correspondente for encontrado, ele o executa (`source`).
+5.  Se nenhum arquétipo for fornecido ou se um arquétipo correspondente não for encontrado, ele executa `_default.zsh` como fallback.
+6.  Cada script de arquétipo é responsável por gerar a estrutura de arquivos específica para aquele tipo de projeto (por exemplo, criar um `package.json` para `node`, um `Cargo.toml` para `rust`, etc.).
 
--   **Description:** A standard frontend web project with basic HTML, CSS, and JavaScript files.
--   **Generated Files:**
-    -   `public/index.html`
-    -   `public/css/style.css`
-    -   `public/js/main.js`
+## Arquétipos Disponíveis
 
-### 2. Python (Poetry)
+Os seguintes arquétipos estão atualmente disponíveis:
 
--   **Description:** A Python project managed with Poetry, including a virtual environment setup and `mise` integration for automatic activation.
--   **Generated Files:**
-    -   `src/__init__.py`
-    -   `src/main.py`
-    -   `tests/test_main.py`
-    -   `pyproject.toml` (Poetry configuration)
-    -   `mise.toml` (Mise configuration for auto-activating venv)
-    -   `Dockerfile` (optional, basic Python Dockerfile)
--   **Neovim Integration:** `.nvim/ftplugin/python.vim` with keybindings for running Python files.
+-   `arduino`
+-   `c`
+-   `default`
+-   `gamedev_c`
+-   `go`
+-   `java`
+-   `node`
+-   `python`
+-   `rust`
+-   `spring`
+-   `web`
 
-### 3. Node.js (npm)
+## Como Personalizar
 
--   **Description:** A basic Node.js project initialized with `npm`.
--   **Generated Files:**
-    -   `src/index.js`
-    -   `tests/test.js`
-    -   `package.json` (npm configuration)
-    -   `Dockerfile` (optional, basic Node.js Dockerfile)
--   **Neovim Integration:** `.nvim/ftplugin/javascript.vim` with keybindings for running Node.js scripts.
+É fácil estender o `mkproj` com seus próprios arquétipos.
 
-### 4. Go (go mod)
+### Para Modificar um Arquétipo
 
--   **Description:** A Go project initialized with Go Modules.
--   **Generated Files:**
-    -   `cmd/main.go`
-    -   `go.mod`, `go.sum`
-    -   `Dockerfile` (optional, basic Go Dockerfile)
--   **Neovim Integration:** `.nvim/ftplugin/go.vim` with keybindings for building and running Go applications.
+Simplesmente edite o arquivo `_<arquétipo>.zsh` correspondente neste diretório para alterar a estrutura que ele gera.
 
-### 5. Rust (cargo)
+### Para Adicionar um Novo Arquétipo
 
--   **Description:** A Rust project initialized with Cargo.
--   **Generated Files:**
-    -   `src/main.rs`
-    -   `Cargo.toml`, `Cargo.lock`
-    -   `Dockerfile` (optional, basic Rust Dockerfile)
--   **Neovim Integration:** `.nvim/ftplugin/rust.vim` with keybindings for building and running Rust applications.
+1.  Crie um novo arquivo chamado `_<meu_arquétipo>.zsh` neste diretório.
+2.  Dentro do arquivo, adicione os comandos de shell necessários para construir a estrutura do seu projeto. Você pode usar `echo`, `mkdir`, `touch`, etc.
 
-### 6. Spring Boot (Spring Initializr)
+    **Exemplo de um novo arquétipo `_simple-c`:**
 
--   **Description:** A Spring Boot project generated using the Spring Initializr CLI, with selected dependencies.
--   **Generated Files:** Standard Spring Boot project structure (e.g., `src/main/java/...`, `pom.xml` or `build.gradle`).
--   **Neovim Integration:** `.nvim/ftplugin/java.vim` with keybindings for building and running Spring Boot applications (via Gradle/Maven).
+    ```sh
+    # _simple-c.zsh
 
-### 7. Arduino (Arduino CLI)
+    echo "#include <stdio.h>" > main.c
+    echo "int main() { printf(\"Hello, World!\\n\"); return 0; }" >> main.c
 
--   **Description:** An Arduino project set up for use with `arduino-cli`.
--   **Generated Files:**
-    -   `src/<project_name>.ino` (main sketch file)
--   **Neovim Integration:** `.nvim/ftplugin/arduino.vim` with keybindings for compiling and uploading Arduino sketches.
+    echo "CC=gcc" > Makefile
+    echo "CFLAGS=-Wall -g" >> Makefile
+    echo "all: main" >> Makefile
+    echo "main: main.c" >> Makefile
+    echo "		$(CC) $(CFLAGS) -o main main.c" >> Makefile
+    echo "clean:" >> Makefile
+    echo "	rm -f main" >> Makefile
 
-### 8. C (basic)
+    echo "Projeto C simples criado."
+    ```
 
--   **Description:** A basic C project with a `main.c` and a `Makefile` for compilation.
--   **Generated Files:**
-    -   `src/main.c`
-    -   `Makefile`
--   **Neovim Integration:** `.nvim/ftplugin/c.vim` with keybindings for compiling and running C programs.
-
-### 9. Java (Gradle)
-
--   **Description:** A basic Java application project initialized with Gradle.
--   **Generated Files:**
-    -   `src/main/java/com/example/App.java`
-    -   `build.gradle`, `settings.gradle`, `gradlew`, etc.
--   **Neovim Integration:** `.nvim/ftplugin/java.vim` with keybindings for building and running Java applications (via Gradle).
-
-### 10. GameDev in C (SDL2)
-
--   **Description:** A C game development project with a basic SDL2 setup and a `Makefile`.
--   **Generated Files:**
-    -   `src/main.c`
-    -   `Makefile` (configured for SDL2)
--   **Neovim Integration:** `.nvim/ftplugin/c.vim` with keybindings for compiling and running C game projects.
-
-### 11. DevOps
-
--   **Description:** Placeholder for future DevOps project structures.
-
-### 12. Fullstack
-
--   **Description:** Placeholder for future Fullstack project structures.
-
-### 13. Default
-
--   **Description:** A minimal project structure with basic directories.
--   **Generated Files:**
-    -   `src/`, `tests/`, `docs/` directories
-    -   `README.md`
-
-## Customization
-
-You can customize `mkproj` by modifying the helper scripts in `modules/functions/mkproj/` or by adding new ones. Ensure new helper scripts are sourced by `modules/functions/mkproj.zsh`.
+3.  Agora você pode usá-lo com `mkproj meu-projeto-c simple-c`.
