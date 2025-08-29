@@ -1,0 +1,5 @@
+# This file bootstraps the Zsh configuration from the dotfiles repository.
+
+# Set ZDOTDIR to the zsh config directory within the dotfiles repo.
+# This tells Zsh where to find its configuration files (.zshrc, .zprofile, etc.)
+export ZDOTDIR="$HOME/dotfiles/config/zsh"
