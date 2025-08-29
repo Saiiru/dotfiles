@@ -1,0 +1,2 @@
+id,project,description,_due,priority,status,tags
+1,DAEDALUS,Implement pico HUD,2025-08-20,M,U,hardware;kora

@@ -1,0 +1,206 @@
+/*
+  Sairu Battlemage HUD - Solo Leveling Edition
+  Responsive, columnar, RPG dashboard for Obsidian
+  Author: Copilot x Saiiru
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=JetBrains+Mono:wght@700&display=swap');
+
+:root {
+  --sl-bg: #10131a;
+  --sl-panel: #171d2b;
+  --sl-border: #5be3ff;
+  --sl-accent: #6f83ff;
+  --sl-xp: #ffe066;
+  --sl-danger: #ff4757;
+  --sl-health: #7bf1a8;
+  --sl-mana: #7ecbff;
+  --sl-shadow: 0 0 32px #5be3ff88;
+  --sl-font-main: 'Orbitron', 'JetBrains Mono', monospace;
+  --sl-font-title: 'Orbitron', 'JetBrains Mono', monospace;
+  --sl-font-mage: 'JetBrains Mono', monospace;
+  --sl-text: #e3eafc;
+  --sl-muted: #7f8da9;
+}
+
+/* Core Background */
+body, .markdown-preview-view, .markdown-source-view {
+  background: linear-gradient(135deg, #10131a 80%, #23294b 100%);
+  color: var(--sl-text);
+  font-family: var(--sl-font-main);
+}
+
+/* HUD Root: Responsive columns */
+.sl-hud-root {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 32px 28px;
+  padding: 30px 0 40px 0;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1000px) {
+  .sl-hud-root {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 16px;
+  }
+}
+@media (max-width: 700px) {
+  .sl-hud-root {
+    grid-template-columns: 1fr;
+    gap: 12px 0;
+    padding: 12px 0 24px 0;
+  }
+}
+
+/* Cards and Panels */
+.sl-card {
+  background: var(--sl-panel);
+  border: 2.2px solid var(--sl-border);
+  border-radius: 14px;
+  box-shadow: var(--sl-shadow);
+  padding: 28px 30px 22px 30px;
+  min-width: 290px;
+  max-width: 450px;
+  width: 100%;
+  position: relative;
+  transition: box-shadow .19s;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.sl-card:hover {
+  box-shadow: 0 0 32px var(--sl-accent), 0 0 90px #fff2;
+}
+@media (max-width: 500px) {
+  .sl-card { padding: 14px 6vw 10px 6vw; min-width: unset; }
+}
+
+/* Titles */
+.sl-title {
+  font-family: var(--sl-font-title);
+  font-size: 1.3em;
+  color: #fff;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #5be3ff33, #6f83ff33);
+  border: 1.3px solid var(--sl-border);
+  border-radius: 7px;
+  padding: 6px 12px;
+  margin-bottom: 1.0em;
+  box-shadow: 0 0 18px var(--sl-accent);
+  display: inline-block;
+  text-shadow: 0 0 6px #5be3ff99;
+}
+
+.sl-class {
+  background: linear-gradient(90deg, var(--sl-accent), #23294b 80%);
+  color: #fff;
+  font-size: 1.06em;
+  letter-spacing: 1.2px;
+  padding: 3px 14px;
+  border-radius: 40px;
+  margin-bottom: 5px;
+  border: 2px solid var(--sl-border);
+  box-shadow: 0 0 14px #5be3ff44;
+}
+
+.sl-level {
+  font-size: 2.1em;
+  font-family: var(--sl-font-title);
+  color: var(--sl-accent);
+  text-shadow: 0 0 18px var(--sl-accent);
+  margin-bottom: .4em;
+  text-align: center;
+}
+
+/* Stat Grid */
+.sl-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px 22px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.sl-stat {
+  background: #121826cc;
+  border: 1.2px solid #5be3ff44;
+  border-radius: 8px;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 1.08em;
+  color: var(--sl-health);
+  font-family: var(--sl-font-mage);
+}
+.sl-stat-label {
+  display: block;
+  color: var(--sl-muted);
+  font-size: .82em;
+}
+
+/* XP Bar */
+.sl-xpbar {
+  background: #232c50;
+  border-radius: 9px;
+  width: 100%;
+  height: 23px;
+  margin: 13px 0 7px 0;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 12px var(--sl-xp);
+}
+.sl-xpfill {
+  background: linear-gradient(90deg, var(--sl-xp), var(--sl-accent));
+  height: 100%;
+  border-radius: 9px;
+}
+
+.sl-quest, .sl-quest-status {
+  font-size: 1.13em;
+  margin-bottom: 10px;
+}
+.sl-quest-status.incomplete { color: var(--sl-danger);}
+.sl-quest-status.complete { color: var(--sl-health);}
+.sl-quest-objectives {
+  margin-bottom: 8px;
+}
+.sl-quest-objectives > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.04em;
+  margin-bottom: 3px;
+}
+
+/* Buttons */
+.sl-btn {
+  font-family: var(--sl-font-main);
+  background: linear-gradient(90deg, var(--sl-accent), var(--sl-xp));
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 31px;
+  font-size: 1.08em;
+  margin: 13px 0 0 0;
+  box-shadow: 0 0 13px var(--sl-accent);
+  cursor: pointer;
+  transition: .13s;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+.sl-btn:hover {
+  background: linear-gradient(90deg, var(--sl-xp), var(--sl-accent));
+  color: #23294b;
+  box-shadow: 0 0 22px var(--sl-xp);
+}
+
+/* Warning */
+.sl-warning {
+  color: var(--sl-danger);
+  font-weight: 600;
+  margin-top: 1.1em;
+  font-size: 1.04em;
+  text-shadow: 0 0 3px var(--sl-danger)66;
+}

@@ -1,0 +1,148 @@
+#!/usr/bin/env zsh
+# KORA Universal Project Creator (mkproj)
+
+# Este script é um wrapper para a função mkproj definida em functions.zsh
+# Ele é chamado via `mkproj <tipo> <nome>`
+
+set -e
+
+# Cores
+KORA_PRIMARY="#A020F0"
+KORA_CYAN="#00FFFF"
+KORA_GREEN="#00FF7F"
+KORA_MAGENTA="#FF00FF"
+KORA_YELLOW="#FF00FF"
+KORA_RED="#FF00FF"
+
+_kora_log() { gum style --foreground "$KORA_PRIMARY" "[KORA]" "$1"; }
+_kora_spin() { gum spin --spinner dot --title "$1" -- sleep 0.5; }
+
+# --- Project Creation Functions ---
+
+_mkproj_spring() {
+    _kora_log "Iniciando protocolo Spring Initializr..."
+    local name=$1 project_dir=$2
+
+    local java_version=$(gum choose "21" "17" "11" --header "Versão do Java")
+    local build_tool=$(gum choose "maven" "gradle" --header "Build Tool")
+    local deps=$(gum input --placeholder "web,data-jpa,devtools" --header "Dependências (separadas por vírgula)")
+
+    _kora_spin "Contatando Spring Initializr..."
+    spring init --dependencies="$deps" --java-version="$java_version" --name="$name" --groupId="dev.kora" --artifactId="$name" --package-name="dev.kora.$name" --build="$build_tool" --extract .
+}
+
+_mkproj_gamedev_c() {
+    _kora_log "Construindo arena para GameDev (C)..."
+    mkdir -p src include build assets
+    cat > Makefile <<'EOF'
+CC=gcc
+CFLAGS=-Iinclude -Wall -g -lSDL2 -lSDL2_image
+
+all: build/game
+
+build/game: src/main.c
+	$(CC) $(CFLAGS) -o $@ $^
+
+run:
+	./build/game
+
+clean:
+	rm -f build/*
+EOF
+    cat > src/main.c <<'EOF'
+#include <stdio.h>
+
+int main(int argc, char* argv[]) {
+    printf("KORA Game Engine Initialized!\n");
+    return 0;
+}
+EOF
+}
+
+_mkproj_default() {
+    _kora_log "Criando estrutura de projeto padrão..."
+    mkdir -p src tests docs
+    touch README.md
+}
+
+# --- Main Function ---
+mkproj() {
+    gum style --border double --align center --width 50 --margin "1 2" --padding "1 2" "KORA :: PROTOCOLO DE CRIAÇÃO DE PROJETO"
+
+    local type=$(gum choose "python" "node" "react" "go" "rust" "spring" "arduino" "gamedev-c" "devops" "fullstack" --header "Selecione o arquétipo do projeto")
+    [[ -z $type ]] && _kora_log "Criação de projeto cancelada." && return 1
+
+    local name=$(gum input --placeholder "Nome do projeto..." --header "Nome do Projeto")
+    [[ -z $name ]] && _kora_log "Criação de projeto cancelada." && return 1
+
+    local project_dir="$HOME/Projects/$name"
+
+    if [ -d "$project_dir" ]; then
+        _kora_log "Erro: Diretório '$project_dir' já existe." && return 1
+    fi
+
+    mkdir -p "$project_dir"
+    cd "$project_dir"
+
+    _kora_log "Inicializando projeto $type '$name' em '$project_dir'..."
+
+    case $type in
+        python)
+            _kora_spin "Configurando ambiente Python..."
+            mise exec python -- python -m venv .venv
+            echo "# $name" > README.md
+            echo "*.pyc
+__pycache__/
+.venv/" > .gitignore
+            touch requirements.txt
+            ;; 
+        node)
+            _kora_spin "Configurando ambiente Node.js..."
+            mise exec node -- npm init -y
+            ;; 
+        react)
+            _kora_spin "Criando aplicação React..."
+            mise exec node -- npx --yes create-react-app@latest . --template typescript
+            ;; 
+        go)
+            _kora_spin "Inicializando módulo Go..."
+            mise exec go -- go mod init "$name"
+            touch main.go
+            ;; 
+        rust)
+            _kora_spin "Inicializando projeto Rust..."
+            mise exec rust -- cargo init
+            ;; 
+        spring)
+            _mkproj_spring "$name" "$project_dir"
+            ;; 
+        arduino)
+            _kora_spin "Configurando projeto Arduino..."
+            mise exec arduino -- arduino-cli sketch new "$name"
+            mv "$name"/* .
+            rmdir "$name"
+            ;; 
+        gamedev-c)
+            _mkproj_gamedev_c
+            ;; 
+        devops)
+            _kora_spin "Criando estrutura DevOps..."
+            mkdir -p ansible terraform kubernetes/manifests
+            echo "# $name - DevOps Project" > README.md
+            ;; 
+        fullstack)
+            _kora_spin "Criando estrutura Fullstack..."
+            mkdir -p backend frontend
+            echo "# $name - Fullstack Project" > README.md
+            ;; 
+        *)
+            _mkproj_default
+            ;; 
+esac
+
+    _kora_log "Projeto '$name' criado com sucesso!"
+    gum confirm "Abrir projeto no Neovim?" && nvim .
+}
+
+# Chamada da função principal
+mkproj "$@"

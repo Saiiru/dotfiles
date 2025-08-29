@@ -1,0 +1,36 @@
+[taskwarrior]
+data_location = "~/.config/task/data"
+context = "today"         # altera rápido no TUI com `c`
+
+[ui]
+show_help = true
+show_graph = true
+show_task_counts = true
+refresh_rate = 200
+
+[theme]
+# Base Watch Dogs: ciano/azul + magenta para críticos
+bg               = "black"
+fg               = "white"
+accent           = "#39c5bb"
+accent_alt       = "#00bcd4"
+good             = "#41d05f"
+warning          = "#ffd166"
+critical         = "#ff2d55"
+muted            = "#7a7a7a"
+tag              = "#8be9fd"
+uda              = "#bd93f9"
+project          = "#50fa7b"
+date             = "#00e5ff"
+header_bg        = "#0a0d10"
+header_fg        = "#39c5bb"
+status_pending   = "#39c5bb"
+status_completed = "#41d05f"
+status_deleted   = "#ff5555"
+status_waiting   = "#ffd166"
+priority_H       = "#ff2d55"
+priority_M       = "#ffd166"
+priority_L       = "#50fa7b"
+bar_complete     = "#39c5bb"
+bar_remaining    = "#31343a"
+

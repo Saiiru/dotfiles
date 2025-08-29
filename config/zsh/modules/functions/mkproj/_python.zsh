@@ -16,9 +16,9 @@ _mkproj_python() {
 
     _kora_log "Python project created with Poetry."
     _kora_log "The virtual environment is located in the '.venv' folder."
-    _kora_log "It will activate automatically when you 'cd' into this project."
-    _kora_log "To manually enter the Poetry shell: 'poetry shell'"
-    _kora_log "To run commands within the venv: 'poetry run <command>'"
+    _kora_log "It will activate automatically when you 'cd' into this project (managed by mise)."
+    _kora_log "To manually activate the environment: 'source $(poetry env activate)'"
+    _kora_log "To run commands within the venv without activating: 'poetry run <command>'"
     _kora_log "To add dependencies: 'poetry add <package>'"
     _kora_log "To remove dependencies: 'poetry remove <package>'"
 
