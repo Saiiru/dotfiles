@@ -1,0 +1,3 @@
+# Formato: URL -> nome.ext
+# https://exemplo.com/wall/vanta-abstract.jpg -> vanta-abstract.jpg
+# https://exemplo.com/wall/decay-arcade.png   -> decay-arcade.png
