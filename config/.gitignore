@@ -1,0 +1,5 @@
+# Code - OSS: manter só User/settings.json
+config/Code - OSS/*
+!config/Code - OSS/User/
+config/Code - OSS/User/*
+!config/Code - OSS/User/settings.json
