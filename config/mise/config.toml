@@ -1,0 +1,28 @@
+[env]
+MISE_NODE_COREPACK = "true" # habilita pnpm/yarn pelo corepack
+
+[tools]
+# runtimes
+node = "lts"
+bun = "latest"
+deno = "latest"
+python = "3.12"
+uv = "latest"        # gestor python ultrarrápido
+go = "1.23"
+rust = "stable"
+java = "temurin-21"
+# neovim = "nightly"
+
+# CLIs / LSPs / formatadores (quando suportados direto pelo mise)
+lua-language-server = "latest"
+
+# utilitários básicos
+ripgrep = "latest"   # rg
+fd = "latest"
+fzf = "latest"
+bat = "latest"
+delta = "latest"
+eza = "latest"
+zoxide = "latest"
+lazygit = "latest"
+
