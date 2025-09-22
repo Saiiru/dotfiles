@@ -1,13 +1,23 @@
-# imagens/temas/wallpapers
-*.png filter=lfs diff=lfs merge=lfs -text
-*.jpg filter=lfs diff=lfs merge=lfs -text
+# ---- imagens / ícones / svg / etc.
+*.png  filter=lfs diff=lfs merge=lfs -text
+*.jpg  filter=lfs diff=lfs merge=lfs -text
 *.jpeg filter=lfs diff=lfs merge=lfs -text
 *.webp filter=lfs diff=lfs merge=lfs -text
-*.gif filter=lfs diff=lfs merge=lfs -text
-*.svg filter=lfs diff=lfs merge=lfs -text
-*.ico filter=lfs diff=lfs merge=lfs -text
+*.gif  filter=lfs diff=lfs merge=lfs -text
+*.svg  filter=lfs diff=lfs merge=lfs -text
+*.ico  filter=lfs diff=lfs merge=lfs -text
 *.icns filter=lfs diff=lfs merge=lfs -text
-# pacotes/arquivos grandes
-*.tar *.tar.gz *.zip *.7z *.xz *.zst filter=lfs diff=lfs merge=lfs -text
-# fontes
-*.ttf *.otf *.woff *.woff2 filter=lfs diff=lfs merge=lfs -text
+
+# ---- fontes
+*.ttf   filter=lfs diff=lfs merge=lfs -text
+*.otf   filter=lfs diff=lfs merge=lfs -text
+*.woff  filter=lfs diff=lfs merge=lfs -text
+*.woff2 filter=lfs diff=lfs merge=lfs -text
+
+# ---- arquivos grandes (compactados)
+*.tar     filter=lfs diff=lfs merge=lfs -text
+*.tar.gz  filter=lfs diff=lfs merge=lfs -text
+*.zip     filter=lfs diff=lfs merge=lfs -text
+*.7z      filter=lfs diff=lfs merge=lfs -text
+*.xz      filter=lfs diff=lfs merge=lfs -text
+*.zst     filter=lfs diff=lfs merge=lfs -text
