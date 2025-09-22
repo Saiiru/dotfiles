@@ -47,3 +47,20 @@
 /xfce4
 /xsettingsd.zsh_audit/
 .local/bin/mise
+# VS Code - OSS caches
+config/Code - OSS/*
+!config/Code - OSS/User/
+!config/Code - OSS/User/settings.json
+
+# Zsh histories
+config/zsh/.zsh_history
+config/zsh/.zhistory
+config/zsh/history
+
+# Dconf binary dump
+config/dconf/user
+
+# Wayland/audio runtime
+config/pulse/
+config/parallel/
+config/go/telemetry/
