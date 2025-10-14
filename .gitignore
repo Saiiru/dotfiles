@@ -64,3 +64,9 @@ config/dconf/user
 config/pulse/
 config/parallel/
 config/go/telemetry/
+
+.zsh_history
+.zcompdump*
+.zsh_sessions
+user_configuration.json
+workstation/

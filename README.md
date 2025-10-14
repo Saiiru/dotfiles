@@ -1,71 +1,40 @@
-# Sairu's Dotfiles - KORA Neural Development Matrix
+# Meus Dotfiles
 
-Welcome to the KORA Neural Development Matrix, a highly optimized and modular personal development environment. This repository contains my dotfiles, meticulously crafted to enhance productivity, streamline workflows, and provide a consistent experience across various development tasks.
+Este repositório contém minhas configurações pessoais para um ambiente de desenvolvimento em Arch Linux, gerenciado com Git e implantado via symlinks.
 
-## Overview
+## ✨ Visão Geral
 
-KORA is designed with a focus on:
+O objetivo é ter um setup limpo, rápido e produtivo, centrado em torno de ferramentas de linha de comando e um gerenciador de janelas tiling.
 
--   **Modularity:** Configurations are broken down into small, manageable modules.
--   **Performance:** Optimized for fast startup times and responsive interactions.
--   **Consistency:** Provides a unified experience for different programming languages and tools.
--   **Automation:** Automates common development tasks, such as project scaffolding.
+- **SO**: Arch Linux
+- **WM**: Hyprland (Wayland)
+- **Terminal**: Ghostty / Kitty
+- **Editor**: Neovim (configuração em Lua)
+- **Shell**: Zsh com Starship e Oh My Posh
+- **Barra de Status**: Waybar
+- **Lançador**: Rofi
 
-## Key Components
+## 📂 Estrutura do Repositório
 
--   **Zsh Configuration (`config/zsh/`):**
-    A highly customized Zsh setup powered by `zinit` for blazing-fast plugin management. It includes:
-    -   Modular organization of aliases, functions, keybindings, and environment variables.
-    -   Advanced completion and syntax highlighting.
-    -   Integration with `fzf` for fuzzy finding.
-    -   A custom prompt powered by Oh My Posh.
+- `config/`: Contém todas as configurações de aplicativos (dotfiles), organizadas por nome de aplicativo.
+- `scripts/`: Scripts de instalação e utilitários para automatizar o setup e tarefas comuns.
+- `notes/`: Anotações pessoais sobre instalação e configuração do sistema.
 
--   **Neovim Configuration (`.config/nvim/`):**
-    My personal Neovim setup, optimized for software development with LSP, completion, and various productivity plugins.
+## 🚀 Instalação em um Novo Sistema
 
--   **`mkproj` - Universal Project Creator (`config/zsh/modules/functions/mkproj/`):**
-    An interactive TUI-based script to scaffold new projects for various programming languages and frameworks. It automates initial setup, including:
-    -   Web (HTML, CSS, JS)
-    -   Python (Poetry)
-    -   Node.js (npm)
-    -   Go (go mod)
-    -   Rust (cargo)
-    -   Spring Boot (Spring Initializr)
-    -   Arduino (Arduino CLI)
-    -   C (basic)
-    -   Game Development in C (SDL2)
-    -   And more, with extensible templates.
-    
-    `mkproj` also generates project-local Neovim configurations (`.nvim/ftplugin/`) to provide language-specific build and run commands directly within your editor.
+1.  Clone o repositório para `~/dotfiles`:
+    ```bash
+    git clone <URL_DO_SEU_REPO_AQUI> ~/dotfiles
+    ```
 
--   **Other Configurations:**
-    Includes configurations for `tmux`, `kitty`, `btop`, `rofi`, and other essential CLI tools.
+2.  Execute o script de deploy para criar os symlinks:
+    ```bash
+    cd ~/dotfiles/scripts
+    # (Será necessário criar um script de deploy que execute os comandos ln -sfn)
+    ./deploy.sh 
+    ```
 
-## Installation
-
-To set up KORA, clone this repository and run the `bootstrap.sh` script (if available) or manually link the configuration files.
-
-```bash
-git clone https://github.com/sairu/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-# Run bootstrap.sh if it exists, otherwise manually link
-./bootstrap.sh # (Example, script might not exist or need adjustments)
-```
-
-## Usage
-
-After installation, open a new terminal session. You can start by using `mkproj` to create a new project:
-
-```bash
-mkproj
-```
-
-Follow the on-screen prompts to select your project type and name. The script will set up the basic structure, initialize a Git repository, and open it in a `tmux` session with Neovim.
-
-## Contributing
-
-Feel free to explore, adapt, or contribute to these dotfiles. If you find issues or have suggestions, please open an issue or pull request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+3.  Instale os pacotes necessários:
+    ```bash
+    ./package_install.sh
+    ```
