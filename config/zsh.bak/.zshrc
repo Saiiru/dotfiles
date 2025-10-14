@@ -40,12 +40,12 @@ alias ..='cd ..'; alias ...='cd ../..'
 alias .3='cd ../../..'; alias .4='cd ../../../..'; alias .5='cd ../../../../..'
 alias mkdir='mkdir -p'
 AURHELPER=${AURHELPER:-paru}
-function un { "$AURHELPER" -Rns "$@"; }
-function up { "$AURHELPER" -Syu "$@"; }
-function pl { "$AURHELPER" -Qs "$@"; }
-function pa { "$AURHELPER" -Ss "$@"; }
-function pc { "$AURHELPER" -Sc "$@"; }
-function po { set -o pipefail; "$AURHELPER" -Qtdq | "$AURHELPER" -Rns -; }
+un(){ "$AURHELPER" -Rns "$@"; }
+up(){ "$AURHELPER" -Syu "$@"; }
+pl(){ "$AURHELPER" -Qs "$@"; }
+pa(){ "$AURHELPER" -Ss "$@"; }
+pc(){ "$AURHELPER" -Sc "$@"; }
+po(){ set -o pipefail; "$AURHELPER" -Qtdq | "$AURHELPER" -Rns -; }
 
 # ── FZF defaults ───────────────────────────────────────────────────────────────
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'

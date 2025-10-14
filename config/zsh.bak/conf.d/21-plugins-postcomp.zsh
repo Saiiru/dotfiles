@@ -7,7 +7,11 @@ else
   znap source zsh-users/zsh-completions
 fi
 
-
+if [[ -r /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+else
+  znap source zsh-users/zsh-autosuggestions
+fi
 
 # fzf-tab não existe no pacote oficial; use upstream
 znap source Aloxaf/fzf-tab
@@ -28,7 +32,7 @@ zstyle ':fzf-tab:*' switch-group 'Alt-h' 'Alt-l'
 zstyle ':fzf-tab:complete:*' insert-unambiguous yes
 
 # autosuggestions: cor discreta
-
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 # syntax-highlighting: paleta leve
 typeset -gA ZSH_HIGHLIGHT_STYLES
@@ -36,7 +40,7 @@ ZSH_HIGHLIGHT_STYLES[default]=none
 ZSH_HIGHLIGHT_STYLES[comment]='fg=8'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan,bold'
 ZSH_HIGHLIGHT_STYLES[builtin]='fg=blue'
-ZSH_HIGHLIGHT_STYLES[command]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[command]='fg=#39ff14,bold'
 ZSH_HIGHLIGHT_STYLES[function]='fg=magenta'
 ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=blue,bold'
 ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=green'

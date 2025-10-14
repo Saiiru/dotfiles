@@ -1,4 +1,5 @@
-emulate -L zsh
-function TRAPZERR() {
-  printf '\n[%s] erro: %s\n' "$0" "$ZSH_COMMAND" >&2
-}
+# emulate -L zsh
+# Handler simples para mostrar comando falho
+# function TRAPZERR() {
+#   printf '\n[Zsh] erro: %s\n' "$ZSH_COMMAND" >&2
+# }

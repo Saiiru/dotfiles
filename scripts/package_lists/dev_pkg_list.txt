@@ -3,6 +3,7 @@ bun
 bun-bin
 clang
 cmake
+cri-tools
 ctags
 docker
 docker-compose
