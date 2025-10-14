@@ -4,7 +4,7 @@ alias l='eza -lh --icons=auto'
 alias ls='eza -1  --icons=auto'
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first'
 alias ld='eza -lhD --icons=auto'
-alias lt='eza --tree --icons=auto'
+alias lt='eza --icons=auto --tree'
 
 alias ..='cd ..'; alias ...='cd ../..'
 alias .3='cd ../../..'; alias .4='cd ../../../..'; alias .5='cd ../../../../..'

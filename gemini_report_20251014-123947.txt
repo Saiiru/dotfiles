@@ -1,0 +1,80 @@
+Relatório Completo da Interação com o Gemini CLI - 2025-10-14 12:39:47
+
+## 1. Visão Geral Inicial do Ambiente
+
+*   **Usuário:** sairu
+*   **Sistema Operacional:** Arch Linux
+*   **Estrutura de Dotfiles Inicial:** Múltiplos repositórios (`~/dotfiles`, `~/dotfiles/workstation`), configurações espalhadas em `~/.config`. O `~/dotfiles` já era um repositório Git.
+*   **Hardware:**
+    *   SSD (sda): `/` e `/boot`
+    *   HDD (sdb): `/home`
+    *   NVMe SSD (nvme0n1p1): Não montado, 465.8GB livres.
+*   **Tecnologias Chave:** Hyprland, Neovim, Zsh, Kitty, Rofi, Waybar, mise, Docker, Kubernetes.
+
+## 2. Ações Realizadas Cronologicamente
+
+### 2.1. Consolidação e Reorganização dos Dotfiles
+*   **Objetivo:** Centralizar todas as configurações em `~/dotfiles/config/` e usar symlinks para `~/.config/`.
+*   **Ações:**
+    *   Criação de `~/dotfiles/config/`, `~/dotfiles/scripts/`, `~/dotfiles/notes/`.
+    *   Cópia de configurações prioritárias de `~/dotfiles/workstation/config_dotfiles/config/` para `~/dotfiles/config/`.
+    *   Cópia de scripts e notas relevantes para `~/dotfiles/scripts/` e `~/dotfiles/notes/`.
+    *   Cópia de diretórios de configuração importantes de `~/.config/` (e.g., `fish`, `foot`, `fuzzel`, `quickshell`, `wlogout`) para `~/dotfiles/config/`.
+    *   Criação/atualização de symlinks de `~/.config/<app>` para `~/dotfiles/config/<app>`.
+    *   Criação/atualização de symlinks para `.alias` e `.tmux.conf` na HOME.
+    *   Remoção do diretório `~/dotfiles/workstation/`.
+    *   Criação de um `README.md` personalizado para `~/dotfiles`.
+    *   Atualização do `.gitignore` para excluir arquivos sensíveis (`user_configuration.json`, caches, logs, etc.).
+    *   **Correção:** Identificado que `~/dotfiles` já era um repositório. Desfeito o commit inicial incorreto (`git reset --soft HEAD~1`). Limpeza manual de arquivos antigos na raiz de `~/dotfiles` (`rm -rf .editorconfig .gitattributes ...`). Novo commit limpo (`git add -A && git commit -m "refactor(dotfiles): complete reorganization and cleanup"`). Push forçado para o GitHub.
+
+### 2.2. Configuração do `mise`
+*   **Objetivo:** Criar um `config.toml` inicial e definir runtimes globais.
+*   **Ações:**
+    *   Criação de `~/dotfiles/config/mise/config.toml` com configurações básicas.
+    *   Execução de `mise use -g` para Java, Gradle, Maven, Node, Pnpm, Yarn, Bun, Python.
+
+### 2.3. Geração de Scripts de Instalação
+*   **Objetivo:** Criar um processo de instalação automatizado e limpo.
+*   **Ações:**
+    *   Criação de `~/dotfiles/scripts/setup.sh` (script mestre).
+    *   Criação de `~/dotfiles/bootstrap.sh` (script de uma linha para nova máquina).
+    *   Remoção de scripts antigos (`install.sh`, `script.sh`).
+    *   Commit e push das mudanças.
+
+### 2.4. Configuração de Docker e Kubernetes (via `dev_stack.sh`)
+*   **Objetivo:** Instalar e configurar ferramentas de desenvolvimento.
+*   **Ações:**
+    *   Geração do script `~/dotfiles/scripts/arch/dev_stack.sh`.
+    *   Execução do `dev_stack.sh` (instalou pacotes, adicionou usuário ao grupo `docker`, ativou serviço `docker`).
+
+### 2.5. Configuração Zsh (Depuração e Reimplementação)
+*   **Objetivo:** Implementar uma configuração Zsh "keyboard-first" completa e funcional, e depurar problemas de carregamento.
+*   **Ações:**
+    *   Múltiplas tentativas de correção de symlinks e ordem de carregamento.
+    *   Reimplementação completa da configuração Zsh fornecida pelo usuário (arquivos `.zshenv`, `.zprofile`, `.zshrc`, `plugin.zsh`, `conf.d/*`, `functions/*`).
+    *   Correção de erros de parse em `.zshrc` (funções `un`, `up`, etc.).
+    *   Correção da cor do `command` no `zsh-syntax-highlighting`.
+    *   Tentativas de desativar `zsh-autosuggestions` devido a erros persistentes.
+    *   Desativação temporária de `TRAPZERR` para revelar erros subjacentes.
+    *   Ativação de `set -x` para depuração verbosa.
+
+## 3. Estado Atual do Sistema
+
+*   **Dotfiles:** Repositório `~/dotfiles` está limpo e contém a estrutura `config/`, `scripts/`, `notes/`. Todas as configurações foram atualizadas e commitadas.
+*   **Symlinks:** Os symlinks em `~/.config` e `~/` apontam para `~/dotfiles/config/`.
+*   **Zsh:** A configuração Zsh foi reimplementada com a versão fornecida pelo usuário. No entanto, **ainda há um problema persistente** com o carregamento completo do Zsh, manifestado por erros durante a inicialização. O `set -x` está ativo para depuração.
+*   **Hardware:**
+    *   SSD (sda): `/` e `/boot`
+    *   HDD (sdb): `/home` (ainda não migrado)
+    *   NVMe SSD (nvme0n1p1): Não montado (plano de migração de `/home` pendente).
+*   **Docker/K8s:** Pacotes instalados, Docker configurado (usuário no grupo, serviço ativo).
+
+## 4. Próximos Passos / Recomendações Pendentes
+
+*   **Prioridade Máxima: Depurar e Corrigir a Inicialização do Zsh.** Precisamos analisar o output verboso de `exec zsh -l` (com `set -x` ativo) para identificar a causa raiz dos erros e fazer com que o shell carregue completamente.
+*   **Migração da `/home` para NVMe:** O plano detalhado foi fornecido. Esta é uma tarefa crítica a ser executada manualmente em TTY.
+*   **Plano de Backup para Dados Pessoais:** Implementar uma rotina de backup para `~/data` (após a migração) ou para `~/home` (se não migrar).
+*   **Snapshots do Sistema:** Configurar `snapper` para BTRFS.
+*   **Integração de Novas Configurações Zsh:** O usuário mencionou querer mais coisas no Zsh. Após a depuração, podemos integrar essas novas funcionalidades.
+
+---
