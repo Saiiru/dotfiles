@@ -1,17 +1,26 @@
-# Arquivo de configuração global para o mise (~/.config/mise/config.toml)
+# Arquivo de configuração global para o mise (~/dotfiles/config/mise/config.toml)
 
 # Ferramentas e suas versões globais
-# Descomente e ajuste as versões que deseja usar globalmente.
-# Ex: python = "3.11"
+# Defina aqui as versões que você quer usar em qualquer lugar do seu sistema.
 [tools]
-# python = "latest"
-# node = "lts"
-# go = "latest"
-# rust = "stable"
-# lua = "latest"
+python = "latest"
+node = "lts"
+go = "latest"
+rust = "stable"
+lua = "latest"
+java = "temurin-21"
+maven = "latest"
+gradle = "latest"
+pnpm = "latest"
+yarn = "latest"
+bun = "latest"
 
 # Configurações gerais do mise
 [settings]
-experimental = true # Habilita recursos experimentais
-jobs = 4 # Número de jobs paralelos para instalação
+experimental = true
+jobs = 4 # Aumenta a velocidade de instalação
 shorthands_file = "~/.config/mise/shorthands.toml"
+
+# Exemplo de como definir variáveis de ambiente globais
+# [env]
+# NPM_CONFIG_PREFIX = "~/.npm-global"
