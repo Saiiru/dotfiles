@@ -1,0 +1,7 @@
+# Audio packages for Rocksmith and general use
+
+audacity
+jack2
+qjackctl
+pipewire-jack
+pavucontrol

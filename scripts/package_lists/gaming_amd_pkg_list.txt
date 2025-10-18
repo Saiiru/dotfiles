@@ -1,0 +1,17 @@
+# Gaming and AMD/ROCm Packages
+
+# AMD ROCm drivers and tools for OpenCL/HIP
+hip-runtime-amd
+rocminfo
+rocm-opencl-runtime
+rocm-smi-lib
+miopen-hip
+libva-mesa-driver
+
+# Gaming utilities
+gamescope
+mangohud
+vkbasalt
+
+# GPU control and overclocking
+corectrl

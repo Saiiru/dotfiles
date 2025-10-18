@@ -1,0 +1,12 @@
+1760825280337	SessionStore	DEBUG	Can't read session file which doesn't exist: clean
+1760825280340	SessionStore	DEBUG	Can't read session file which doesn't exist: recovery
+1760825280345	SessionStore	DEBUG	Can't read session file which doesn't exist: recoveryBackup
+1760825280352	SessionStore	DEBUG	Can't read session file which doesn't exist: cleanBackup
+1760825280353	SessionStore	DEBUG	Can't read session file which doesn't exist: clean
+1760825280367	SessionStore	DEBUG	Can't read session file which doesn't exist: recovery
+1760825280386	SessionStore	DEBUG	Can't read session file which doesn't exist: recoveryBackup
+1760825280387	SessionStore	DEBUG	Can't read session file which doesn't exist: cleanBackup
+1760825280387	SessionStore	WARN	No readable session files found to restore, starting with empty session
+1760825280387	SessionStore	DEBUG	Completed SessionFile.read() with result.origin: empty
+1760825280387	SessionStore	DEBUG	No valid session found
+1760825280683	SessionStore	DEBUG	initSession willRestore: false, SessionStartup.sessionType: 0

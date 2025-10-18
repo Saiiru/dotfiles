@@ -1,0 +1,27 @@
+# mise packages: language runtimes and core tools
+# format: <package>@<version>
+
+# Languages
+go@latest
+node@lts
+python@latest
+ruby@latest
+lua@latest
+java@21 # For Java development
+
+# Core CLI tools
+bat@latest
+black@latest
+bun@latest
+delta@latest
+deno@latest
+fzf@latest
+fd@latest
+lazygit@latest
+rg@latest
+ruff@latest
+rye@latest
+stylua@latest
+usage@latest
+zoxide@latest
+yarn@1.22.22
