@@ -1,0 +1,74 @@
+Relatório da Estrutura do Repositório Dotfiles
+===============================================
+
+Este documento fornece uma visão geral da estrutura final do diretório `scripts`, que foi organizado para automatizar a configuração completa do sistema de forma modular e gerenciável.
+
+---
+### Ponto de Entrada Principal
+
+O coração do sistema de instalação é um único script:
+
+- **`scripts/install.sh`**
+
+Para configurar um novo sistema do zero, este é o único comando que você precisa executar. Ele oferece dois modos de operação:
+
+1.  **Modo Interativo**: `scripts/install.sh` (Apresenta um menu para escolher o que instalar).
+2.  **Modo Automático**: `scripts/install.sh -y` (Instala tudo sem pedir confirmações).
+
+---
+### Árvore Final do Diretório de Scripts
+
+A estrutura final do diretório `scripts` é a seguinte:
+
+```
+/home/sairu/dotfiles/scripts/
+├── install.sh
+├── scripts_report.txt
+├── dotfiles_structure_report.txt
+|
+├── install/
+│   ├── 00_system_packages.sh
+│   ├── 01_flatpak.sh
+│   └── 02_dev_environment.sh
+|
+├── lib/
+│   └── helpers.sh
+|
+└── package_lists/
+    ├── audio_pkg_list.txt
+    ├── common_pkg_list.txt
+    ├── dev_pkg_list.txt
+    ├── flatpak_pkg_list.txt
+    ├── gaming_amd_pkg_list.txt
+    ├── gaming_pkg_list.txt
+    ├── go_tool_list.txt
+    ├── mise_pkg_list.txt
+    ├── npm_pkg_list.txt
+    ├── uv_tool_list.txt
+    └── wayland_pkg_list.txt
+```
+
+---
+### Detalhamento dos Componentes
+
+#### `scripts/install.sh`
+- **Função**: Orquestrador principal. É o ponto de entrada que gerencia o fluxo da instalação, decidindo entre o modo interativo ou automático.
+
+#### `scripts/lib/`
+- **Função**: Contém bibliotecas de scripts com funções auxiliares.
+- **`helpers.sh`**: Fornece as funções de UI (com o `gum`) para criar menus, spinners e logs coloridos, além de conter a lógica central para o modo não interativo (a função `confirm()`).
+
+#### `scripts/install/`
+- **Função**: Contém os scripts que executam as tarefas de instalação específicas.
+- **`00_system_packages.sh`**: Responsável por instalar todos os pacotes de sistema via `yay` (dos repositórios Arch e AUR).
+- **`01_flatpak.sh`**: Responsável por instalar aplicativos via `flatpak`.
+- **`02_dev_environment.sh`**: O script mais complexo, responsável por configurar todo o ambiente de desenvolvimento. Ele instala o `mise` e, em seguida, usa-o para gerenciar runtimes de linguagens e ferramentas, que por sua vez instalam LSPs e outros utilitários.
+
+#### `scripts/package_lists/`
+- **Função**: Atua como a "base de dados" do instalador. Contém todas as listas de pacotes, separadas por categoria.
+- **Vantagem**: Para adicionar ou remover um programa, você não precisa alterar a lógica dos scripts. Basta editar o arquivo `.txt` correspondente, tornando a manutenção muito mais simples.
+
+---
+### Documentação Adicional
+
+- Para um mergulho profundo na **lógica interna** de cada script (como o modo não interativo funciona, os bugs que foram corrigidos, etc.), consulte o arquivo `scripts_report.txt`.

@@ -1,0 +1,16 @@
+# Global npm packages
+
+@antfu/ni
+@fsouza/prettierd
+@mermaid-js/mermaid-cli
+@tailwindcss/language-server
+@vtsls/language-server
+cspell
+oxlint
+pnpm
+prettier
+rustywind
+typescript-language-server
+typescript
+vscode-langservers-extracted
+npm-check-updates

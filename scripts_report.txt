@@ -1,0 +1,62 @@
+Relatório Detalhado da Estrutura de Scripts de Instalação (v2)
+==============================================================
+
+Este documento detalha a estrutura de scripts de instalação, projetada para ser modular, robusta e suportar tanto a execução interativa quanto a automática (não interativa).
+
+---
+### Visão Geral da Estrutura
+
+A estrutura visa separar a lógica (scripts) dos dados (listas de pacotes) e fornecer um ponto de entrada claro e flexível.
+
+- **`scripts/install.sh`**: Ponto de entrada principal. Gerencia o modo de execução (interativo vs. automático).
+- **`scripts/install/`**: Contém os scripts de instalação atômicos, cada um com uma responsabilidade específica.
+- **`scripts/package_lists/`**: Contém arquivos de texto (`.txt`) que servem como a "base de dados" de todos os pacotes a serem instalados.
+- **`scripts/lib/`**: Contém scripts de ajuda. O mais importante é o `helpers.sh`.
+
+---
+### Mecanismo de Execução Não Interativa (Chave para Automação)
+
+A capacidade de executar sem confirmação é controlada por uma variável de ambiente:
+
+- **`FORCE_YES`**: Quando esta variável é definida como `"true"`, a função `confirm()` no `helpers.sh` retorna sucesso imediatamente, efetivamente respondendo "sim" a qualquer pergunta de confirmação.
+- **Argumento `-y` ou `--yes`**: O script principal `install.sh` foi modificado para aceitar `-y` ou `--yes` como um argumento de linha de comando. Ao receber este argumento, ele exporta `FORCE_YES=true`, ativando o modo não interativo para todos os sub-scripts que ele chama.
+
+---
+### Análise Detalhada dos Scripts
+
+#### 1. `scripts/lib/helpers.sh`
+- **Propósito**: Fornecer funções compartilhadas para UI (com `gum`) и lógica.
+- **Função `confirm()` (Modificada)**:
+  - **Lógica**: `if [[ "${FORCE_YES:-false}" == "true" ]]; then return 0; fi`
+  - **Detalhe**: Antes de mostrar um prompt de confirmação ao usuário, a função agora verifica se a variável `FORCE_YES` é `"true"`. Se for, a função termina com sucesso (código de saída 0), pulando a interação com o usuário. Caso contrário, exibe o prompt `gum confirm` normalmente. Esta é a peça central que permite o modo não interativo.
+
+#### 2. `scripts/install.sh` (Modificado)
+- **Propósito**: Orquestrador principal com suporte a modo duplo.
+- **Funcionalidade**:
+  - **Detecção de Argumento**: No início, verifica se o primeiro argumento (`$1`) é `-y` ou `--yes`.
+  - **Ativação do Modo Automático**: Se o argumento for detectado, ele exporta `FORCE_YES=true` e chama a função `run_all_installers`, que executa todas as etapas de instalação em sequência e sem o menu de seleção.
+  - **Modo Interativo**: Se nenhum argumento for fornecido, ele chama a função `run_interactive_menu`, que exibe o menu de seleção `gum choose` para o usuário decidir o que instalar.
+
+#### 3. `scripts/install/00_system_packages.sh` (Modificado)
+- **Propósito**: Instalar pacotes de sistema (Arch/AUR).
+- **Funcionalidade**:
+  - **Correção de Bug (grep)**: O comando `grep` foi atualizado para `grep -h`, que omite os nomes dos arquivos da saída, resultando em uma lista de pacotes limpa na tela.
+  - **Não Interativo**: A chamada à função `confirm()` neste script agora respeita a variável `FORCE_YES`, permitindo que a instalação prossiga sem confirmação manual quando o modo automático está ativado.
+
+#### 4. `scripts/install/01_flatpak.sh`
+- **Propósito**: Instalar aplicativos Flatpak.
+- **Funcionalidade**:
+  - **Não Interativo**: As confirmações individuais para cada aplicativo são agora puladas se `FORCE_YES` for `true`, instalando todos os aplicativos da lista de uma vez.
+
+#### 5. `scripts/install/02_dev_environment.sh` (Modificado)
+- **Propósito**: Configurar o ambiente de desenvolvimento de forma modular.
+- **Funcionalidade**:
+  - **Correção de Bug (mise)**: O caminho para o executável do `mise` foi corrigido de um caminho fixo (`~/.local/bin/mise`) para apenas `mise`, tornando a chamada mais robusta.
+  - **Correção de Bug (npm)**: O loop para instalar pacotes `npm` foi reescrito de um `for ... in` para um `while read -r`, que processa a lista de pacotes linha por linha corretamente. Isso corrige o erro de verificação de "pacotes vazios".
+  - **Não Interativo**: Todas as chamadas à função `confirm()` dentro deste script (para instalar `mise`, pacotes `npm`, ferramentas `go`, etc.) são agora automaticamente aprovadas quando o script principal é executado com o flag `-y`.
+
+---
+### Análise do Diretório `package_lists/`
+
+- **Propósito**: Desacoplar as listas de pacotes da lógica dos scripts. Para adicionar ou remover um programa, basta editar o arquivo `.txt` correspondente.
+- **Arquivos**: `common_pkg_list.txt`, `gaming_amd_pkg_list.txt`, `audio_pkg_list.txt`, `flatpak_pkg_list.txt`, `mise_pkg_list.txt`, `npm_pkg_list.txt`, `go_tool_list.txt`, `uv_tool_list.txt`.

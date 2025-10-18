@@ -132,6 +132,11 @@ ForegroundNormal=#bfc8ca
 ForegroundPositive=#00e479
 ForegroundVisited=#ebb2ff
 
+[DirSelect Dialog]
+DirSelectDialog Size=1536,702
+History Items[$e]=file:$HOME/dotfiles/config/firefox-dev-profile
+Splitter State=\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\xa8\x00\x00\x02\xa8\x00\xff\xff\xff\xff\x01\x00\x00\x00\x01\x00
+
 [General]
 ColorScheme=MaterialYouDark
 ColorSchemeHash=692242fcc6ce0796b25801aad43e8cf8f3bbaa88
