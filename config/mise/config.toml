@@ -3,7 +3,7 @@
 # Ferramentas e suas versões globais
 # Defina aqui as versões que você quer usar em qualquer lugar do seu sistema.
 [tools]
-python = "3.12"
+python = "latest"
 node = "lts"
 go = "latest"
 rust = "stable"
@@ -12,8 +12,8 @@ java = "temurin-21"
 maven = "latest"
 gradle = "latest"
 pnpm = "latest"
-yarn = "latest"
 bun = "latest"
+yarn = "latest"
 
 # Configurações gerais do mise
 [settings]

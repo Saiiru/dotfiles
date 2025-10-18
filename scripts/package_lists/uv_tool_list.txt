@@ -1,6 +1,0 @@
-# Python tools to install with uv
-
-codespell
-isort
-pyright
-ruff

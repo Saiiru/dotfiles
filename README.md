@@ -1,40 +1,36 @@
-# Meus Dotfiles
+# My workstation configs
 
-Este repositório contém minhas configurações pessoais para um ambiente de desenvolvimento em Arch Linux, gerenciado com Git e implantado via symlinks.
+This repository contains my personal configurations for an Arch Linux development environment, managed with Git and deployed via symlinks.
 
-## ✨ Visão Geral
+## ✨ Overview
 
-O objetivo é ter um setup limpo, rápido e produtivo, centrado em torno de ferramentas de linha de comando e um gerenciador de janelas tiling.
+The goal is to have a clean, fast, and productive setup, centered around command-line tools and a tiling window manager.
 
-- **SO**: Arch Linux
+- **OS**: Arch Linux
 - **WM**: Hyprland (Wayland)
 - **Terminal**: Ghostty / Kitty
-- **Editor**: Neovim (configuração em Lua)
-- **Shell**: Zsh com Starship e Oh My Posh
-- **Barra de Status**: Waybar
-- **Lançador**: Rofi
+- **Editor**: Neovim (Lua configuration)
+- **Shell**: Zsh with Starship and Oh My Posh
+- **Status Bar**: Waybar
+- **Launcher**: Rofi
 
-## 📂 Estrutura do Repositório
+## 📂 Repository Structure
 
-- `config/`: Contém todas as configurações de aplicativos (dotfiles), organizadas por nome de aplicativo.
-- `scripts/`: Scripts de instalação e utilitários para automatizar o setup e tarefas comuns.
-- `notes/`: Anotações pessoais sobre instalação e configuração do sistema.
+- `config/`: Contains all application configurations (dotfiles), organized by application name.
+- `scripts/`: Installation scripts and utilities to automate setup and common tasks.
+- `notes/`: Personal notes on system installation and configuration.
 
-## 🚀 Instalação em um Novo Sistema
+## 🚀 Installation on a New System
 
-1.  Clone o repositório para `~/dotfiles`:
+1.  Clone the repository to `~/dotfiles`:
     ```bash
-    git clone <URL_DO_SEU_REPO_AQUI> ~/dotfiles
+    git clone https://github.com/Saiiru/dotfiles.git ~/dotfiles
     ```
 
-2.  Execute o script de deploy para criar os symlinks:
+2.  Run the setup script to install packages and create symlinks:
     ```bash
     cd ~/dotfiles/scripts
-    # (Será necessário criar um script de deploy que execute os comandos ln -sfn)
-    ./deploy.sh 
+    ./setup.sh
     ```
 
-3.  Instale os pacotes necessários:
-    ```bash
-    ./package_install.sh
-    ```
+3.  After running `setup.sh`, you might need to log out and log back in (or reboot) for all changes (like Docker group membership) to take effect.

@@ -1,2 +1,17 @@
-# Ignore Firefox Dev Profile cache and dynamic files
-config/firefox-dev-profile/
+*.zwc
+.zcompdump*
+.zsh_history
+config_dotfiles/config/dconf/user
+config_dotfiles/config/**/cache/
+config_dotfiles/config/**/logs/
+lazy-lock.json
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.webp
+**/*.otf
+**/*.ttf
+*.bak-*
+*.class
+user_configuration.json
+workstation/

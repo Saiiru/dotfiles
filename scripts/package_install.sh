@@ -30,7 +30,7 @@ if ! command -v yay &>/dev/null; then
       echo "📥 Installing yay..."
       install_yay
       ;;
-    *)
+    *) 
       echo "❌ yay installation skipped. Please install yay before proceeding."
       exit 1
       ;;

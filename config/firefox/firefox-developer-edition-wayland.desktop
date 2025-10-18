@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=Firefox Developer (Wayland)
-Exec=env MOZ_ENABLE_WAYLAND=1 firefox-developer-edition %u
-Terminal=false
-Type=Application
-Categories=Network;WebBrowser;
-StartupNotify=true

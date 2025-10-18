@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 dir_of_this_script="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
