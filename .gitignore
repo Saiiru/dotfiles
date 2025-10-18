@@ -14,4 +14,4 @@ lazy-lock.json
 *.bak-*
 *.class
 user_configuration.json
-workstation/
+workstation/config/firefox-dev-profile/storage/
