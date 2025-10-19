@@ -60,6 +60,7 @@ run_interactive_menu() {
         "System Packages (yay)" 
         "Flatpak Apps"
         "Development Environment (mise, npm, go, uv)"
+        "Fonts"
         "All of the above"
     )
 
@@ -88,6 +89,10 @@ run_interactive_menu() {
 
     if $run_all || echo "$selection" | grep -q "Development Environment"; then
         bash "$INSTALL_DIR/02_dev_environment.sh"
+    fi
+
+    if $run_all || echo "$selection" | grep -q "Fonts"; then
+        bash "$INSTALL_DIR/03_fonts.sh"
     fi
 }
 
