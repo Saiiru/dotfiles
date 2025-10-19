@@ -1,5 +1,7 @@
 ghostty
+zoxide
 zsh
+ydotool # Required for ydotool.service
 zsh-syntax-highlighting
 zsh-autosuggestions
 lshw

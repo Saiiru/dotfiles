@@ -1,0 +1,15 @@
+[Unit]
+Description=ydotool daemon
+Documentation=https://github.com/ReimuNotMoe/ydotool
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ydotoold
+Restart=always
+RestartSec=3
+TimeoutStopSec=5
+# Environment=YDOTOOL_SOCKET=/tmp/.ydotool_socket # Uncomment and adjust if you need a specific socket path
+
+[Install]
+WantedBy=default.target
