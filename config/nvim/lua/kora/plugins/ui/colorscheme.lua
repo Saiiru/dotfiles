@@ -1,4 +1,4 @@
--- lua/grimmvim/plugins/ui/colorscheme.lua
+-- lua/kora/plugins/ui/colorscheme.lua
 -- Plugin + módulo de cores embutido (sem dependências externas)
 
 return {

@@ -1,4 +1,4 @@
--- lua/grimmvim/config/options.lua
+-- lua/kora/config/options.lua
 local opt = vim.opt
 
 -- Globais/Janela (seguras na init)
