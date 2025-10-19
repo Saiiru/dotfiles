@@ -46,6 +46,7 @@ run_all_installers() {
     bash "$INSTALL_DIR/00_system_packages.sh"
     bash "$INSTALL_DIR/01_flatpak.sh"
     bash "$INSTALL_DIR/02_dev_environment.sh"
+    bash "$INSTALL_DIR/03_fonts.sh"
 }
 
 run_interactive_menu() {
