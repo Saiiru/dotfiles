@@ -36,8 +36,13 @@ main() {
     # Consolidate all package lists into one
     info "Reading package lists..."
     local pkg_list_files
-pkg_list_files=$(find "$SCRIPTS_DIR/package_lists" -type f -name "*.txt" ! -name "flatpak_pkg_list.txt")
-
+    pkg_list_files=$(find "$SCRIPTS_DIR/package_lists" -type f -name "*.txt" \
+        ! -name "flatpak_pkg_list.txt" \
+        ! -name "mise_pkg_list.txt" \
+        ! -name "npm_pkg_list.txt" \
+        ! -name "go_tool_list.txt" \
+        ! -name "uv_tool_list.txt" \
+        ! -name "fonts_list.txt")
     if [ -z "$pkg_list_files" ]; then
         warning "No package list files found. Skipping."
         exit 0
