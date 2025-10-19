@@ -10,7 +10,7 @@ setopt extended_glob
 setopt no_beep
 
 # Case-insensitive completion
-setopt CASE_SENSITIVE=false
+unsetopt CASE_SENSITIVE
 
 # Correct spelling of commands
 setopt CORRECT
