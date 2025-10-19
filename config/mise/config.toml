@@ -8,12 +8,13 @@ node = "lts"
 go = "latest"
 rust = "stable"
 lua = "latest"
-java = "temurin-21"
+java = "21"
 maven = "latest"
 gradle = "latest"
 pnpm = "latest"
 bun = "latest"
 yarn = "latest"
+ruby = "latest"
 
 # Configurações gerais do mise
 [settings]

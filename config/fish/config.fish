@@ -24,3 +24,6 @@ if status is-interactive # Commands to run in interactive sessions can go here
     alias q 'qs -c ii'
     
 end
+
+# mise shell integration
+status is-interactive; and eval (mise activate fish | psub)

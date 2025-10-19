@@ -47,6 +47,7 @@ run_all_installers() {
     bash "$INSTALL_DIR/01_flatpak.sh"
     bash "$INSTALL_DIR/02_dev_environment.sh"
     bash "$INSTALL_DIR/03_fonts.sh"
+    bash "$INSTALL_DIR/04_symlinks.sh"
 }
 
 run_interactive_menu() {
@@ -62,6 +63,7 @@ run_interactive_menu() {
         "Flatpak Apps"
         "Development Environment (mise, npm, go, uv)"
         "Fonts"
+        "Symlinks"
         "All of the above"
     )
 
@@ -95,6 +97,12 @@ run_interactive_menu() {
     if $run_all || echo "$selection" | grep -q "Fonts"; then
         bash "$INSTALL_DIR/03_fonts.sh"
     fi
+
+    if $run_all || echo "$selection" | grep -q "Symlinks"; then
+        bash "$INSTALL_DIR/04_symlinks.sh"
+    fi
+
+    success "Installation process finished!"
 }
 
 main() {

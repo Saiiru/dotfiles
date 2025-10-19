@@ -1,0 +1,19 @@
+# Taskwarrior configuration file
+# For more details, see 'man taskrc'
+
+# Default report
+# report.next.columns=id,priority,due,description
+# report.next.labels=ID,P,Due,Description
+
+# Color theme (uncomment and adjust as needed)
+# include /usr/share/task/light-256.theme
+
+# Data location (default is ~/.task)
+# data.location=~/.task
+
+# Sync server (uncomment and configure for Taskwarrior Sync)
+# taskd.server=your.taskserver.com:53589
+# taskd.certificate=~/.task/certs/client.cert.pem
+# taskd.key=~/.task/certs/client.key.pem
+# taskd.ca=~/.task/certs/ca.cert.pem
+# taskd.credentials=your_username/your_uuid/your_key

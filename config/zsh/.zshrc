@@ -59,3 +59,6 @@ done
 for plugin_file in "$ZDOTDIR"/plugin.zsh; do
   [ -f "$plugin_file" ] && source "$plugin_file"
 done
+
+# mise shell integration
+eval "$(mise activate zsh)"
