@@ -1,17 +1,12 @@
-*.zwc
+# lixo de runtime
 .zcompdump*
 .zsh_history
-config_dotfiles/config/dconf/user
-config_dotfiles/config/**/cache/
-config_dotfiles/config/**/logs/
-lazy-lock.json
+config/firefox-dev-profile/
+
+# thumbs e binários
 **/*.png
 **/*.jpg
 **/*.jpeg
 **/*.webp
-**/*.otf
-**/*.ttf
-*.bak-*
-*.class
-user_configuration.json
-workstation/config/firefox-dev-profile/storage/
+
+# lockfiles de runtime (deixe o lazy-lock do nvim se quiser versionar)
