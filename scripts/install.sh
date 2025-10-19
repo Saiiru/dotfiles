@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-set -x # Enable debug mode
 
 # --- Main Installer Script --- #
 
