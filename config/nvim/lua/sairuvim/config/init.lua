@@ -1,7 +1,0 @@
-require("sairuvim.config.keymaps")
-require("sairuvim.config.lazy")
-require("sairuvim.config.options")
-require("sairuvim.config.highlights")
-require("sairuvim.config.autocommands")
-require("sairuvim.config.custom_functions")
-require("sairuvim.config.lsp_diagnostic")

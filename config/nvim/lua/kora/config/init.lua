@@ -1,0 +1,7 @@
+require("kora.config.keymaps")
+require("kora.config.lazy")
+require("kora.config.options")
+require("kora.config.highlights")
+require("kora.config.autocommands")
+require("kora.config.custom_functions")
+require("kora.config.lsp_diagnostic")

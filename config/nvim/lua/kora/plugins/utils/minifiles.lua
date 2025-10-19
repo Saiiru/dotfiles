@@ -24,9 +24,8 @@ return {
 		},
 		windows = {
 			preview = true,
-			-- max_number = math.huge,
-			width_focus = 50,
-			width_nofocus = 50,
+			width_nofocus = 25,
+			width_focus = 30,
 			width_preview = 50,
 		},
 	},
@@ -52,7 +51,7 @@ return {
 		{
 			mode = "n",
 			"<leader>ec",
-			":e ~/.config/nvim/lua/grimmvim/<cr>",
+			":e ~/.config/nvim/lua/kora/<cr>",
 			desc = "Config Dir",
 		},
 		{

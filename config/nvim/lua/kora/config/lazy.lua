@@ -19,10 +19,10 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	spec = {
 		-- import your plugins
-		{ import = "grimmvim.plugins.ui" },
-		{ import = "grimmvim.plugins.coding" },
-		{ import = "grimmvim.plugins.utils" },
-		{ import = "grimmvim.plugins.lsp_completion" },
+		{ import = "kora.plugins.ui" },
+		{ import = "kora.plugins.coding" },
+		{ import = "kora.plugins.utils" },
+		{ import = "kora.plugins.lsp_completion" },
 	},
 	-- ui config
 	ui = {

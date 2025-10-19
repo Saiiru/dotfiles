@@ -9,7 +9,7 @@ return {
 		require("luasnip").setup({ enable_autosnippets = true })
 		require("luasnip.loaders.from_vscode").lazy_load()
 		require("luasnip.loaders.from_lua").load({
-			paths = { "./lua/grimmvim/plugins/lsp_completion/snippets" },
+			paths = { "./lua/kora/plugins/lsp_completion/snippets" },
 		})
 	end,
 }
