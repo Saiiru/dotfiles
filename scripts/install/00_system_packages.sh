@@ -25,7 +25,6 @@ fi
 source "$SCRIPTS_DIR/lib/helpers.sh"
 
 main() {
-    # set -x # Enable debug mode (temporarily disabled for cleaner output)
     print_header "Installing System Packages"
 
     # Check for yay
@@ -53,7 +52,7 @@ main() {
         else
             warning "Package list file '$file' not found. Skipping."
         fi
-done
+    done
 
     # Trim leading/trailing whitespace from all_packages
     all_packages=$(echo "$all_packages" | xargs)
@@ -73,17 +72,12 @@ done
         echo "SIMULATING: yay -S --needed --noconfirm $all_packages"
         # In a real environment, you would run:
         # yay -S --needed --noconfirm $all_packages
-        # if [ $? -eq 0 ]; then
-        #     success "System package installation complete."
-        # else
-        #     error "System package installation failed."
-        #     exit 1
-        # fi
         success "System package installation (simulated) complete."
+        return 0 # Ensure success for testing
     else
         warning "Installation cancelled by user."
+        return 1 # Indicate cancellation
     fi
-    # set +x # Disable debug mode
 }
 
 main
