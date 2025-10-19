@@ -11,12 +11,12 @@ if ! command -v gum &> /dev/null;
 then
     echo "[BOOTSTRAP] 'gum' not found. Attempting to install it..."
     if ! command -v sudo &> /dev/null;
-    then
+then
         echo "[BOOTSTRAP-ERROR] 'sudo' not found. Please install 'gum' manually and rerun." >&2
         exit 1
     fi
     if ! sudo pacman -S --noconfirm --needed gum;
-    then
+then
         echo "[BOOTSTRAP-ERROR] Failed to install 'gum'. Please install it manually and rerun." >&2
         exit 1
     fi
@@ -28,11 +28,12 @@ fi
 source "$SCRIPTS_DIR/lib/helpers.sh"
 
 main() {
+    set -x # Enable debug mode
     print_header "Installing System Packages"
 
     # Check for yay
     if ! command_exists yay;
-    then
+then
         error "'yay' not found. Please install it first."
         exit 1
     fi
@@ -56,7 +57,7 @@ main() {
         else
             warning "Package list file '$file' not found. Skipping."
         fi
-done
+    done
 
     # Trim leading/trailing whitespace from all_packages
     all_packages=$(echo "$all_packages" | xargs)
@@ -72,11 +73,20 @@ done
     echo
 
     if confirm "Proceed with installation?"; then
-        spin "Installing packages with yay..." "yay -S --needed --noconfirm $all_packages"
-        success "System package installation complete."
+        # Temporarily remove spin to see raw yay output
+        echo "DEBUG: Running command: yay -S --needed --noconfirm $all_packages"
+        yay -S --needed --noconfirm $all_packages
+        
+        if [ $? -eq 0 ]; then
+            success "System package installation complete."
+        else
+            error "System package installation failed."
+            exit 1
+        fi
     else
         warning "Installation cancelled by user."
     fi
+    set +x # Disable debug mode
 }
 
 main
