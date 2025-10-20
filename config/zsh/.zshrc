@@ -67,9 +67,8 @@ zstyle ':completion:*:warnings'     format '%F{red}no matches%f'
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*:approximate:*' max-errors 2 numeric
 
-# ── functions & completions locais ─────────────────────────────────────────
+# ── functions locais ───────────────────────────────────────────────────────
 for f in "$ZDOTDIR/functions/"*.zsh;    do [ -r "$f" ] && source "$f"; done
-for f in "$ZDOTDIR/completions/"*.zsh;  do [ -r "$f" ] && source "$f"; done
 
 # ── plugins via znap (fzf-tab, autosuggestions, highlighting, etc.) ────────
 [ -r "$ZDOTDIR/plugin.zsh" ] && source "$ZDOTDIR/plugin.zsh"
