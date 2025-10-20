@@ -1,0 +1,11 @@
+/* Scrollbar fino */
+*{
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(120,120,120,.6) transparent !important;
+}
+
+/* Força modo escuro em about:newtab sem conteúdo patrocinado pesado */
+body[is="activity-stream"]{
+  --newtab-background-color: #0f1115 !important;
+  --newtab-text-primary-color: #e5e7eb !important;
+}

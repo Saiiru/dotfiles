@@ -1,0 +1,13 @@
+/* Compacta barra de abas e de navegação */
+:root{ --tab-min-height: 28px !important; }
+.tabbrowser-tab{ padding-inline: 8px !important; }
+#TabsToolbar, #nav-bar{ min-height: 34px !important; }
+
+/* Some “Firefox View”, “List all tabs” se não usa */
+#firefox-view-button, #alltabs-button { display: none !important; }
+
+/* Ícones menores */
+toolbarbutton .toolbarbutton-icon{ width: 18px !important; height: 18px !important; }
+
+/* Remover cantos arredondados exagerados */
+.tabbrowser-tab, #urlbar, .searchbar-textbox{ border-radius: 4px !important; }
