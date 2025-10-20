@@ -3,7 +3,8 @@ set -euo pipefail
 set -x # Enable debug mode
 
 PROFILE_DIR="${1:-/home/sairu/.mozilla/si0fy9p4.kora}"
-DOTDIR="${DOTDIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")"/../.. && pwd)}/config/firefox"
+# Corrected DOTDIR calculation: should point to /home/sairu/dotfiles/config/firefox
+DOTDIR="${DOTDIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)}"
 
 echo "[info] Perfil alvo: $PROFILE_DIR"
 mkdir -p "$PROFILE_DIR/chrome"
@@ -27,7 +28,8 @@ if [ -f "$DOTDIR/policies/policies.json" ]; then
 fi
 
 # Wayland/AMD: ative VA-API por ambiente (systemd --user)
-UNIT="$HOME/.config/systemd/user/firefox-vaapi.env"
+# Corrected unit file extension to .service
+UNIT="$HOME/.config/systemd/user/firefox-vaapi.service"
 mkdir -p "$(dirname "$UNIT")"
 cat > "$UNIT" <<'EOF'
 [Unit]
@@ -49,7 +51,7 @@ echo "DEBUG: Unit file created at: $UNIT"
 ls -l "$UNIT" || true # Check if file exists and its permissions
 
 systemctl --user daemon-reload # Recarrega as unidades do systemd
-systemctl --user enable --now firefox-vaapi.env || true
+systemctl --user enable --now firefox-vaapi.service || true # Use .service extension
 
 echo "[done] Links aplicados."
 echo "Reinicie o Firefox. Em about:config verifique: widget.dmabuf.force-enabled=true e media.ffmpeg.vaapi.enabled=true."
