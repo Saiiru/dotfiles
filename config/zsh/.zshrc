@@ -34,11 +34,11 @@ alias fastfetch='fastfetch --logo-type kitty'
 alias ..='cd ..'; alias ...='cd ../..'; alias .3='cd ../../..'; alias .4='cd ../../../..'; alias .5='cd ../../../../..'
 alias mkdir='mkdir -p'
 AURHELPER=${AURHELPER:-paru}
-un(){ "$AURHELPER" -Rns "$ @"; }
-up(){ "$AURHELPER" -Syu "$ @"; }
-pl(){ "$AURHELPER" -Qs "$ @"; }
-pa(){ "$AURHELPER" -Ss "$ @"; }
-pc(){ "$AURHELPER" -Sc "$ @"; }
+un(){ "$AURHELPER" -Rns "$@"; }
+up(){ "$AURHELPER" -Syu "$@"; }
+pl(){ "$AURHELPER" -Qs "$@"; }
+pa(){ "$AURHELPER" -Ss "$@"; }
+pc(){ "$AURHELPER" -Sc "$@"; }
 po(){ set -o pipefail; "$AURHELPER" -Qtdq | "$AURHELPER" -Rns -; }
 
 # FZF defaults
