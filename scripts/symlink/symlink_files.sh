@@ -39,10 +39,9 @@ main() {
     # Tmux
     create_symlink "$DOTFILES_CONFIG_DIR/tmux/tmux.conf" "$HOME/.tmux.conf" "Tmux config file"
 
-    # Zsh (if not using ~/.config/zsh)
-    # create_symlink "$DOTFILES_CONFIG_DIR/zsh/.zshrc" "$HOME/.zshrc" "Zsh RC file"
-    # create_symlink "$DOTFILES_CONFIG_DIR/zsh/.zshenv" "$HOME/.zshenv" "Zsh ENV file"
-    # create_symlink "$DOTFILES_CONFIG_DIR/zsh/.zprofile" "$HOME/.zprofile" "Zsh Profile file"
+    # Zsh dotfiles
+    create_symlink "$DOTFILES_CONFIG_DIR/zsh/.zshenv" "$HOME/.zshenv" "Zsh ENV file"
+    create_symlink "$DOTFILES_CONFIG_DIR/zsh/.zprofile" "$HOME/.zprofile" "Zsh Profile file"
 
     # Starship (if not using ~/.config/starship)
     # create_symlink "$DOTFILES_CONFIG_DIR/starship.toml" "$HOME/.config/starship.toml" "Starship config file"
