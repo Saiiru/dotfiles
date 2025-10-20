@@ -21,7 +21,16 @@ bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
 
-# Aliases essenciais
+# ── Funções AUR Helper (DEFINIDAS ANTES DOS ALIASES) ──────────────────────────
+AURHELPER=${AURHELPER:-paru}
+un(){ "$AURHELPER" -Rns "$@"; }
+up(){ "$AURHELPER" -Syu "$@"; }
+pl(){ "$AURHELPER" -Qs "$@"; }
+pa(){ "$AURHELPER" -Ss "$@"; }
+pc(){ "$AURHELPER" -Sc "$@"; }
+po(){ set -o pipefail; "$AURHELPER" -Qtdq | "$AURHELPER" -Rns -; }
+
+# ── Aliases essenciais ─────────────────────────────────────────────────────────
 [ -r "$HOME/.alias" ] && source "$HOME/.alias"
 alias c='clear'
 alias l='eza -lh --icons=auto'
@@ -33,13 +42,6 @@ alias vc='code'
 alias fastfetch='fastfetch --logo-type kitty'
 alias ..='cd ..'; alias ...='cd ../..'; alias .3='cd ../../..'; alias .4='cd ../../../..'; alias .5='cd ../../../../..'
 alias mkdir='mkdir -p'
-AURHELPER=${AURHELPER:-paru}
-un(){ "$AURHELPER" -Rns "$@"; }
-up(){ "$AURHELPER" -Syu "$@"; }
-pl(){ "$AURHELPER" -Qs "$@"; }
-pa(){ "$AURHELPER" -Ss "$@"; }
-pc(){ "$AURHELPER" -Sc "$@"; }
-po(){ set -o pipefail; "$AURHELPER" -Qtdq | "$AURHELPER" -Rns -; }
 
 # FZF defaults
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
