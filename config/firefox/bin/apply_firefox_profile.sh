@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+set -x # Enable debug mode
 
 PROFILE_DIR="${1:-/home/sairu/.mozilla/si0fy9p4.kora}"
 DOTDIR="${DOTDIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")"/../.. && pwd)}/config/firefox"
@@ -42,6 +43,10 @@ ExecStart=/usr/bin/true
 [Install]
 WantedBy=default.target
 EOF
+
+# Debugging systemd unit
+echo "DEBUG: Unit file created at: $UNIT"
+ls -l "$UNIT" || true # Check if file exists and its permissions
 
 systemctl --user daemon-reload # Recarrega as unidades do systemd
 systemctl --user enable --now firefox-vaapi.env || true
