@@ -43,6 +43,7 @@ ExecStart=/usr/bin/true
 WantedBy=default.target
 EOF
 
+systemctl --user daemon-reload # Recarrega as unidades do systemd
 systemctl --user enable --now firefox-vaapi.env || true
 
 echo "[done] Links aplicados."
